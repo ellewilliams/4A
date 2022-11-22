@@ -1,0 +1,19 @@
+.talks-page {
+  .talk {
+    border-bottom: 3px solid #c6c6c6;
+		&:nth-last-of-type(2) {
+			border-bottom: 0px;
+		}
+  }
+  .player-embed {
+    div:last-of-type {
+      display: none;
+    }
+  }
+  .button a svg path {
+    @apply transition-all duration-300;
+  }
+  .button:hover a svg path {
+    fill: white !important;
+  }
+}

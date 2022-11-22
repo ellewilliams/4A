@@ -1,0 +1,283 @@
+// Tailwind.
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Global.
+@import "./fonts.scss";
+
+// Typography.
+b,
+strong {
+  font-weight: 500;
+  -webkit-font-smoothing: auto;
+}
+
+@import "./typography";
+
+// Color modes.
+.theme-dark {
+  color: #fff;
+}
+
+// Components.
+@import "./components/layout";
+@import "./components/header";
+@import "./components/navigation";
+@import "./components/footer";
+@import "./components/article/audio";
+@import "./components/article/gallery";
+@import "./components/article/note";
+@import "./components/sideBar";
+@import "./components/variable-width-gallery";
+@import "./components/swiper-gallery";
+
+// Pages.
+@import "./pages/404";
+@import "./pages/digital";
+@import "./pages/papers";
+@import "./pages/whatsOn";
+@import "./pages/visitUs";
+@import "./pages/about";
+@import "./pages/news";
+@import "./pages/donate";
+@import "./pages/kids";
+@import "./pages/people";
+@import "./pages/talks";
+@import "./pages/home";
+@import "./pages/search";
+
+// Templates.
+@import "./templates/article";
+@import "./templates/exhibition";
+@import "./templates/paper";
+@import "./templates/event";
+@import "./templates/event-series";
+@import "./templates/digital";
+@import "./templates/special-event";
+
+// Utilities.
+.visually-hidden:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@media (min-width: 1024px) {
+  .sidebar-box-shadow {
+    box-shadow: 0px 0px 5px rgb(0 0 0 / 15%);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+div:focus {
+  outline: none;
+}
+
+.gatsby-image-wrapper {
+  @apply w-full;
+}
+
+.paper-image-wrapper {
+  overflow: hidden;
+}
+@media (hover: hover) {
+  a img {
+    transition-property: transform !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition-duration: 0.5s !important;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1) !important;
+  }
+  a img:hover {
+    transform: scale(105%) !important;
+  }
+}
+
+// Page layout
+.container-fluid {
+  @apply px-5 md:px-10;
+  max-width: 1700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-grid {
+  @apply grid grid-cols-12 gap-x-5 md:gap-x-10 lg:gap-x-14;
+}
+
+.grid-gap {
+  @apply gap-x-5 md:gap-x-10 lg:gap-x-14;
+}
+
+.page-top {
+  @apply mt-10 lg:mt-12;
+}
+
+.gatsby-image-wrapper {
+  vertical-align: middle;
+}
+
+//Gaps
+
+.page-gap {
+  @apply mb-24 md:mb-36 xl:mb-44;
+}
+
+.section-gap {
+  @apply mb-16 md:mb-28 xl:mb-36;
+}
+
+.section-gap-padding {
+  @apply pb-16 md:pb-28 xl:pb-36;
+}
+
+.medium-gap {
+  @apply mb-12 md:mb-14 lg:mb-20;
+}
+
+.medium-gap-top {
+  @apply mt-10 md:mt-12 lg:mt-16;
+}
+
+.heading-gap {
+  @apply mb-8 md:mb-10 lg:mb-12;
+}
+
+.small-gap {
+  @apply mb-8;
+}
+
+// Image header pages
+
+.heading-image-wrapper {
+  @apply relative overflow-hidden mt-5;
+  height: 30vh;
+  min-height: 220px;
+  max-height: 700px;
+  @media screen and (min-width: 753px) {
+    height: 50vh;
+    @apply mt-12;
+    min-height: 550px;
+  }
+  .container-fluid {
+    @apply z-10 absolute left-0 right-0 w-full bottom-6 md:bottom-12 lg:bottom-14;
+    h2 {
+      @apply text-white;
+    }
+  }
+  .gatsby-image-wrapper,
+  .image-overlay {
+    @apply absolute w-full top-0 h-full;
+  }
+  .image-overlay {
+    @apply bg-black opacity-10;
+    z-index: 5;
+  }
+}
+
+// Exhibition + events header image
+
+.feature-header-image {
+  height: 45vh;
+  min-height: 200px;
+  max-height: 700px;
+  @media screen and (min-width: 1024px) {
+    height: 70vh;
+  }
+}
+
+// Page navigation anchor links
+
+.page-navigation {
+  a {
+    @apply block mb-3 relative pr-10;
+
+    svg {
+      @apply absolute;
+      right: 0;
+      top: 10px;
+    }
+  }
+}
+//ScrollMagic
+
+.parallax {
+  overflow: hidden;
+  position: relative;
+
+  .image-wrapper {
+    height: 30vh;
+    min-height: 300px;
+    max-height: 700px;
+    position: relative;
+    @media screen and (min-width: 753px) {
+      height: 70vh;
+    }
+  }
+
+  .gatsby-image-wrapper {
+    height: 40vh;
+    min-height: 380px;
+    max-height: 900px;
+    @media screen and (min-width: 753px) {
+      height: 80vh;
+    }
+  }
+}
+
+.info-block {
+  overflow: hidden;
+  position: relative;
+
+  @media screen and (max-width: 767px) {
+    .info-image-wrapper {
+      height: 220px;
+    }
+  }
+
+  .parallax {
+    height: 100%;
+    @media screen and (min-width: 768px) {
+      height: inherit;
+    }
+  }
+
+  .image-wrapper {
+    height: 40vh;
+    min-height: 300px;
+    max-height: 350px;
+    @media screen and (min-width: 768px) {
+      height: 500px;
+      max-height: 500px;
+    }
+    @media screen and (min-width: 1000px) {
+      height: 700px;
+      max-height: 700px;
+    }
+  }
+
+  .gatsby-image-wrapper {
+    height: 40vh;
+    min-height: 300px;
+    max-height: 350px;
+    @media screen and (min-width: 768px) {
+      height: 600px;
+      max-height: 600px;
+    }
+    @media screen and (min-width: 1500px) {
+      height: 700px;
+      max-height: 700px;
+    }
+  }
+}

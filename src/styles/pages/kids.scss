@@ -1,0 +1,83 @@
+.container-fluid.kids {
+  .border {
+    @apply fixed top-0 left-0 h-full w-full z-10;
+    border: 8px solid #efbf50;
+    pointer-events: none;
+
+    @media (min-width: 1024px) {
+      border-width: 16px;
+    }
+  }
+
+  .kids-project {
+    a {
+      text-decoration: none;
+    }
+
+    .gatsby-image-wrapper {
+      border-width: 8px;
+      border-style: solid;
+      overflow: hidden;
+      transform: translateX(0); // Safari fix
+
+      & > div:first-of-type {
+        height: 0;
+        padding-bottom: 100%;
+      }
+
+      @media (min-width: 1024px) {
+        border-width: 10px;
+      }
+
+      img {
+        border: none;
+        border-radius: 0px;
+      }
+    }
+
+    &:nth-of-type(5n + 1) {
+      .gatsby-image-wrapper {
+        border-color: #ff67b0;
+      }
+      h3 {
+        color: #ff67b0;
+      }
+    }
+
+    &:nth-of-type(5n + 2) {
+      .gatsby-image-wrapper {
+        border-color: #6097d1;
+      }
+      h3 {
+        color: #6097d1;
+      }
+    }
+
+    &:nth-of-type(5n + 3) {
+      .gatsby-image-wrapper {
+        border-color: #17a45e;
+      }
+      h3 {
+        color: #17a45e;
+      }
+    }
+
+    &:nth-of-type(5n + 4) {
+      .gatsby-image-wrapper {
+        border-color: #efbf50;
+      }
+      h3 {
+        color: #efbf50;
+      }
+    }
+
+    &:nth-of-type(5n + 5) {
+      .gatsby-image-wrapper {
+        border-color: #775bb7;
+      }
+      h3 {
+        color: #775bb7;
+      }
+    }
+  }
+}

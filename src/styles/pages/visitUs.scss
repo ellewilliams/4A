@@ -1,0 +1,8 @@
+.visit-us {
+  .location .text-block h3 {
+    @apply font-display font-bold text-2.5xl md:text-3xl lg:text-4xl antialiased text-silver-chalice;
+  }
+  .location:last-of-type {
+    margin-bottom: 0px;
+  }
+}

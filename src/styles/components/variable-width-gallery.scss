@@ -1,0 +1,8 @@
+.variable-width-gallery {
+  .slick-track {
+    @apply ml-5;
+  }
+}
+.swiper-slide {
+  width: auto!important;
+}

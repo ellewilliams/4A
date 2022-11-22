@@ -1,0 +1,137 @@
+nav.menu {
+  @apply bg-light-grey z-50 h-full overflow-y-scroll p-5 md:p-10;
+  width: 74%;
+  transform: translateX(-100%);
+  left: 0;
+  top: 0;
+  transition: transform 0.4s ease-in-out;
+
+  & > ul {
+    transition: transform 0.4s ease-in-out;
+  }
+
+  &.whats-on {
+    & > ul {
+      transform: translateX(calc(-100% - 20px));
+      position: relative;
+
+      @media (min-width: 753px) {
+        transform: translateX(calc(-100% - 40px));
+      }
+    }
+  }
+  &.whats-on-text {
+    .whatson-submenu {
+      opacity: 1 !important;
+      pointer-events: all !important;
+    }
+  }
+
+  &.about {
+    & > ul {
+      transform: translateX(calc(-100% - 20px));
+      position: relative;
+
+      @media (min-width: 753px) {
+        transform: translateX(calc(-100% - 40px));
+      }
+    }
+  }
+  &.about-text {
+    .about-submenu {
+      opacity: 1 !important;
+      pointer-events: all !important;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (min-width: 400px) {
+    width: 370px;
+    transform: translateX(-370px);
+  }
+
+  .close-menu {
+    margin-bottom: 20px;
+  }
+
+  ul.submenu li {
+    font-weight: 400;
+  }
+
+  li {
+    @apply my-3 md:my-4 font-medium;
+
+    a,
+    button {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      align-items: center;
+      width: 100%;
+      cursor: pointer;
+      transition-duration: 0.2s;
+
+      svg path {
+        transition-duration: 0.2s;
+      }
+
+      &:hover {
+        @apply text-torch-red;
+
+        svg path {
+          stroke: #FF8039;
+        }
+      }
+    }
+  }
+
+  .has-submenu {
+    ul.submenu {
+      position: absolute;
+      left: calc(100% + 20px);
+      width: 100%;
+      top: 0px;
+      opacity: 0;
+      pointer-events: none;
+
+      @media (min-width: 753px) {
+        left: calc(100% + 40px);
+      }
+
+      li:first-of-type {
+        margin-top: 0px;
+      }
+    }
+  }
+
+  .button {
+    border: 2px solid black;
+    margin-top: 5px;
+    padding: 4px 10px 6px;
+    display: inline-block;
+    transition-duration: 0.2s;
+
+    @media (min-width: 753px) {
+      padding: 5px 12px 8px;
+    }
+
+    &:hover {
+      @apply border-torch-red;
+      a {
+        @apply text-torch-red;
+      }
+    }
+  }
+
+  button.back {
+    @apply small-sans;
+  }
+
+  .logo {
+    width: 75%;
+    z-index: -1;
+  }
+}

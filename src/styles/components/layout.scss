@@ -1,0 +1,14 @@
+//Safe Passage Article
+.safe-passage {
+  background: rgb(156, 168, 203);
+  background: linear-gradient(
+    0deg,
+    rgba(156, 168, 203, 1) 0%,
+    #15203c 50%,
+    rgba(156, 168, 203, 1) 100%
+  );
+}
+
+.safe-passage .col-span-8 .grid:last-of-type .col-span-6 {
+  margin-bottom: 0px;
+}

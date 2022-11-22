@@ -1,0 +1,22 @@
+.container-fluid.exhibition {
+  a {
+    text-decoration: underline;
+  }
+  a.no-underline {
+    text-decoration: none;
+  }
+  .partner-logo img {
+    object-fit: contain !important;
+  }
+  img {
+    vertical-align: middle !important;
+  }
+  .events {
+    .event:nth-of-type(n + 3) {
+      @apply md:mt-12 lg:mt-16;
+    }
+  }
+}
+.exhibition.image-gallery .gatsby-image-wrapper {
+  max-height: 650px;
+}

@@ -1,0 +1,49 @@
+.swiper {
+  .swiper-wrapper {
+    transform: translateX(20px);
+
+    .swiper-slide {
+      width: auto !important;
+      @apply transform translate-x-5 md:translate-x-10 lg:translate-x-11;
+
+      &:last-of-type {
+        margin-right: 90vw;
+      }
+
+      img {
+        height: 250px;
+        @media (min-width: 769px) {
+          height: 350px;
+        }
+        @media (min-width: 1280px) {
+          height: 450px;
+        }
+        @media (min-width: 1536px) {
+          height: 550px;
+        }
+      }
+    }
+  }
+}
+
+.header-gallery .swiper {
+	@apply overflow-visible;
+
+  .swiper-wrapper {
+    transform: none;
+		@apply overflow-visible;
+
+    .swiper-slide {
+      width: 100%!important;
+      @apply transform-none overflow-visible;
+
+      &:last-of-type {
+        margin-right: 0px
+      }
+
+      img {
+        height: 105%!important;
+      }
+    }
+  }
+}

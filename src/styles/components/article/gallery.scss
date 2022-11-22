@@ -1,0 +1,18 @@
+.slider-control-prev::before {
+  content: "←";
+}
+
+.slider-control-next::before {
+  content: "→";
+}
+
+.slick-slider {
+  .slick-slide {
+    &:not(.slick-active) {
+      pointer-events: none;
+    }
+  }
+  .slick-active {
+    z-index: 10;
+  }
+}

@@ -1,0 +1,36 @@
+.header-gallery.special-event {
+  height: 45vh;
+  min-height: 200px;
+  max-height: 700px;
+  @media screen and (min-width: 1024px) {
+    height: 70vh;
+  }
+
+	.swiper .swiper-wrapper .swiper-slide img {
+		height: 115%!important;
+	}
+}
+
+.container-fluid.special-event {
+
+	a {
+    text-decoration: underline;
+  }
+  a.no-underline {
+    text-decoration: none;
+  }
+	.partner-logo img {
+    object-fit: contain !important;
+  }
+
+	.page-grid {
+		@apply lg:relative;
+	}
+
+}
+
+.associated-event-series .excerpt p {
+	b, strong {
+	font-weight: 400!important;
+	}
+}

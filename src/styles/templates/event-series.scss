@@ -1,0 +1,21 @@
+.header-gallery {
+	height: 60vh;
+  min-height: 200px;
+  max-height: 850px;
+
+  @media screen and (min-width: 1024px) {
+    height: 90vh;
+  }
+
+	.swiper {
+		height: 100%;
+
+	}
+}
+.event-logo {
+	max-width: 750px;
+
+	@media screen and (min-width: 1600px) {
+		max-height: 400px;
+	}
+}

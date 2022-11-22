@@ -1,0 +1,10 @@
+.container-fluid.papers {
+  .gatsby-image-wrapper,
+  img {
+    vertical-align: middle;
+  }
+  .paper-image-wrapper {
+    height: 0;
+    padding-bottom: 60%;
+  }
+}

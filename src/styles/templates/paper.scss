@@ -1,0 +1,15 @@
+.vh-mobile {
+  height: 60vh;
+
+  .gatsby-image-wrapper-constrained {
+    position: absolute !important;
+  }
+}
+
+.papers-issue header svg path {
+  fill: white;
+}
+
+.papers-issue header .menu-open svg path {
+  stroke: white;
+}

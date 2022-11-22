@@ -1,0 +1,33 @@
+.people {
+  .person .gatsby-image-wrapper {
+    height: 0;
+    padding-bottom: 100%;
+    filter: grayscale(1);
+  }
+
+  .alumni-group .text-block {
+    @media screen and (min-width: 753px) {
+      column-count: 2;
+      column-gap: 40px;
+    }
+  }
+  .alumni-group:last-of-type {
+    margin-bottom: 0px;
+  }
+  .player-container {
+    margin: 0;
+    margin-top:2px;
+    @media screen and (min-width: 753px) {
+      margin-top:4px;
+    }
+    @media screen and (min-width: 1200px) {
+      margin-top:5px;
+    }
+    @apply inline;
+
+    .play, .pause {
+      filter: none;
+      opacity: 0.3;
+    }
+  }
+}

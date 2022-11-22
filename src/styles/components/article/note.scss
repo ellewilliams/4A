@@ -1,0 +1,35 @@
+.notes {
+  ol {
+    counter-reset: item;
+
+    li {
+      counter-increment: item;
+      margin-bottom: 1rem;
+      position: relative;
+      margin-left: 30px;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+
+      &:before {
+        content: counters(item, ".") ". ";
+        position: absolute;
+        left: -30px;
+      }
+    }
+  }
+  ul {
+    li {
+      margin-bottom: 1rem;
+      position: relative;
+      margin-left: 30px;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+
+      &:before {
+        content: "•";
+        position: absolute;
+        left: -30px;
+      }
+    }
+  }
+}

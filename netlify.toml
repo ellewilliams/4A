@@ -1,0 +1,101 @@
+[build]
+  command = "yarn build"
+  publish = "public"
+  functions = "functions"
+[build.environment]
+  DATO_API_TOKEN="5c4272efb5307202ecbb7a0cbbe4cd"
+  SITE_TITLE="4A Centre for Contemporary Asian Art"
+  SITE_DESCRIPTION="4A Centre for Contemporary Asian Art fosters excellence and innovation in contemporary Asian and Australian culture through research, documentation, development and presentation of contemporary visual art from the Region."
+  SITE_KEYWORDS="4A, Contemporary Art, Asian Art, Sydney, Gallery, Visual Art, Asian, Australian, Art"
+  SITE_AUTHOR="Sorry Company"
+  SITE_URL="https://www.4a.com.au/"
+  SITE_LANGUAGE="en"
+  SITE_ICON_PATH="./src/images/icon.png"
+  SITE_BACKGROUND_COLOR="#ECECEC"
+  SITE_THEME_COLOR="#FF8039"
+  GOOGLE_ANALYTICS_ID="UA-51516537-2"
+  FACEBOOK_PIXEL_ID="FACEBOOK_PIXEL_ID"
+  GATSBY_STRIPE_PUBLISHABLE_KEY="pk_live_NpGzJna2PD1PtUEF2i1ewB7o"
+  STRIPE_SECCRET_KEY="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"
+[[plugins]]
+  package = "@netlify/plugin-gatsby"
+[[redirects]]
+  from = "https://papers10.4a.com.au"
+  to = "https://4a.com.au/papers/issue-10"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://papers10.4a.com.au/papers/issue-10"
+  to = "https://4a.com.au/papers/issue-10"
+  status = 301
+  force = true
+[[redirects]]
+  from = "papers10.4a.com.au/articles/letter-from-the-editor-10"
+  to = "4a.com.au/articles/letter-from-the-editor-10"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://papers10.4a.com.au/articles/review-taipei-biennial-2020"
+  to = "https://4a.com.au/articles/review-taipei-biennial-2020"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://papers10.4a.com.au/articles/safe-passage"
+  to = "https://4a.com.au/articles/safe-passage"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://papers10.4a.com.au/articles/green-papaya"
+  to = "https://4a.com.au/articles/green-papaya"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://papers10.4a.com.au/articles/defining-taiwanese-identity"
+  to = "https://4a.com.au/articles/defining-taiwanese-identity"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://papers10.4a.com.au/articles/lightpaths"
+  to = "https://4a.com.au/articles/lightpaths"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://4a.com.au/4a-digital/"
+  to = "https://4a.com.au/digital"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://4a.com.au/4a-kids/"
+  to = "https://4a.com.au/kids/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://4a.com.au/support-2/"
+  to = "https://4a.com.au/donate"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://4a.com.au/4a-certified-climate-active/"
+  to = "https://archive.4a.com.au/4a-certified-climate-active/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://4a.com.au/about-4a/people/"
+  to = "https://4a.com.au/people/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://4a.com.au/about-4a/"
+  to = "https://4a.com.au/about/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://4a.com.au/exhibitions/"
+  to = "https://4a.com.au/whats-on/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://4a.com.au/events/"
+  to = "https://4a.com.au/whats-on#events/"
+  status = 301
+  force = true

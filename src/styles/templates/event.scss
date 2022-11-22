@@ -1,0 +1,11 @@
+.container-fluid.event {
+  a {
+    text-decoration: underline;
+  }
+  a.no-underline {
+    text-decoration: none;
+  }
+  .partner-logo img {
+    object-fit: contain !important;
+  }
+}

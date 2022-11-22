@@ -1,0 +1,12 @@
+.donate {
+  .text-block h2 {
+    @apply text-torch-red;
+  }
+  .donate-options .donation-option:last-of-type, .container-fluid:last-of-type section:last-of-type .supporter-tier:last-of-type {
+    margin-bottom: 0!important;
+  }
+  #online-donations .amount-option {
+    border-width:1px;
+    @apply border-light-grey;
+  }
+}

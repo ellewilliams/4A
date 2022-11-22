@@ -1,0 +1,38 @@
+.search-popup {
+	@apply text-black;
+	
+  form.search-form input.search-input::placeholder {
+    @apply text-white;
+  }
+  .heading-3,
+  .heading-3 span {
+    font-weight: bold !important;
+  }
+
+  .gatsby-image-wrapper {
+    width: 100%;
+    height: inherit;
+    max-height: 250px;
+
+    @media (min-width: 768px) {
+      max-height: 350px;
+    }
+    @media (min-width: 1200px) {
+      max-height: 450px;
+    }
+
+    @media (min-width: 1400px) {
+      max-height: 500px;
+    }
+
+    div {
+      max-width: 100% !important;
+    }
+  }
+}
+
+.search-icon {
+  @media (min-width: 768px) {
+    margin-top: 2px;
+  }
+}
