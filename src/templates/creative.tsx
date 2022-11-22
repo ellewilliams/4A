@@ -66,7 +66,7 @@ const Creative = ({ data }) => {
           {featuredInArticles.length > 0 &&
             featuredInArticles.map((article: any) => (
               <div
-                className="col-span-6 md:col-span-4 xl:col-span-3"
+                className="col-span-6 md:col-span-4 xl:col-span-3 mb-8 md:mb-12"
                 key={article.id}
               >
                 <Link to={`/articles/${article.slug}`}>
@@ -75,21 +75,23 @@ const Creative = ({ data }) => {
                     alt={article.featureImage.alt || name}
                   />
                   <div
-                    className="heading-4-regular my-3 md:my-4 text-torch-red"
+                    className="heading-4-regular mt-3 mb-2 md:mt-4 text-torch-red"
                     dangerouslySetInnerHTML={{
                       __html: article.title,
                     }}
                   />
-                  <div className="body-sans">
-                    4A Papers: {article.paper.title}
-                  </div>
+									{article.paper.title && (
+										<div className="body-sans">
+											4A Papers: {article.paper.title}
+										</div>
+									)}
                 </Link>
               </div>
             ))}
           {featuredInExhibitions.length > 0 &&
             featuredInExhibitions.map((exhibition: any) => (
               <div
-                className="col-span-6 md:col-span-4 xl:col-span-3"
+                className="col-span-6 md:col-span-4 xl:col-span-3 mb-8 md:mb-12"
                 key={exhibition.id}
               >
                 <Link to={`/exhibitions/${exhibition.slug}`}>
@@ -98,7 +100,7 @@ const Creative = ({ data }) => {
                     alt={exhibition.featureImageVideo.alt || name}
                   />
                   <h4
-                    className="heading-4-regular my-3 md:my-4 text-torch-red"
+                    className="heading-4-regular mt-3 mb-2 md:mt-4 text-torch-red"
                     dangerouslySetInnerHTML={{
                       __html: exhibition.formattedTitle,
                     }}
@@ -119,7 +121,7 @@ const Creative = ({ data }) => {
           {featuredInEvents.length > 0 &&
             featuredInEvents.map((event: any) => (
               <div
-                className="col-span-6 md:col-span-4 xl:col-span-3"
+                className="col-span-6 md:col-span-4 xl:col-span-3 mb-8 md:mb-12"
                 key={event.id}
               >
                 <Link to={`/events/${event.slug}`}>
@@ -128,7 +130,7 @@ const Creative = ({ data }) => {
                     alt={event.featureImageVideo.alt || name}
                   />
                   <h4
-                    className="heading-4-regular my-3 md:my-4 text-torch-red"
+                    className="heading-4-regular mt-3 mb-2 md:mt-4 text-torch-red"
                     dangerouslySetInnerHTML={{
                       __html: event.formattedTitle,
                     }}
@@ -155,7 +157,7 @@ const Creative = ({ data }) => {
           {featuredInDigitalProjects.length > 0 &&
             featuredInDigitalProjects.map((project: any) => (
               <div
-                className="col-span-6 md:col-span-4 xl:col-span-3"
+                className="col-span-6 md:col-span-4 xl:col-span-3 mb-8 md:mb-12"
                 key={project.id}
               >
                 <Link to={`/digital/${project.slug}`}>
@@ -175,7 +177,7 @@ const Creative = ({ data }) => {
 						{featuredInSpecialEvents.length > 0 &&
             featuredInSpecialEvents.map((event: any) => (
               <div
-                className="col-span-6 md:col-span-4 xl:col-span-3"
+                className="col-span-6 md:col-span-4 xl:col-span-3 mb-8 md:mb-12"
                 key={event.id}
               >
                 <Link to={`/events/${event.slug}`}>
@@ -184,7 +186,7 @@ const Creative = ({ data }) => {
                     alt={event.featureImage.alt || name}
                   />
                   <h4
-                    className="heading-4-regular my-3 md:my-4 text-torch-red"
+                    className="heading-4-regular mt-3 mb-2 md:mt-4 text-torch-red"
                     dangerouslySetInnerHTML={{
                       __html: event.formattedTitle,
                     }}
@@ -238,7 +240,8 @@ export const query = graphql`
       pronouns
     }
     allDatoCmsArticle(
-      filter: { author: { elemMatch: { name: { eq: $name } } } }
+      filter: { author: { elemMatch: { name: { eq: $name } } } 
+			meta: { isValid: { eq: true }, status: { eq: "published" } } }
     ) {
       nodes {
         id

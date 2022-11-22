@@ -158,7 +158,6 @@ export const query = graphql`
   query ArticleQuery($slug: String!) {
     datoCmsArticle(
       slug: { eq: $slug }
-      meta: { status: { eq: "published" }, isValid: { eq: true } }
     ) {
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags

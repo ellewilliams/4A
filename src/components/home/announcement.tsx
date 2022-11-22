@@ -8,23 +8,23 @@ export const Announcement = ({ block }) => (
   <div className="announcement h-64 sm:h-72 relative section-gap overflow-hidden">
     <div className="page-grid section-gap container-fluid text-center absolute top-1/2 w-full z-10 left-0 right-0">
       {block.subHeading && (
-        <Link to={`${block.link}`} className="col-span-12 heading-3 text-white">
+        <a href={`${block.link}`} className="col-span-12 heading-3 text-white">
           <h3>{block.subHeading}</h3>
-        </Link>
+        </a>
       )}
-      <Link
-        to={`${block.link}`}
+      <a
+        href={`${block.link}`}
         className="col-span-12 heading-1-regular text-white my-3 md:my-4"
       >
         <h2>{block.heading}</h2>
-      </Link>
+      </a>
       {block.callToAction && (
-        <Link
-          to={`${block.link}`}
+        <a
+          href={`${block.link}`}
           className="col-span-12 text-white body-sans mt-2 underline"
         >
           <p className="">{block.callToAction}</p>
-        </Link>
+        </a>
       )}
     </div>
     <Controller>
