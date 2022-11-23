@@ -65,28 +65,30 @@ const Creative = ({ data }) => {
         <div className="page-grid mb-6">
           {featuredInArticles.length > 0 &&
             featuredInArticles.map((article: any) => (
-              <div
-                className="col-span-6 md:col-span-4 xl:col-span-3 mb-8 md:mb-12"
-                key={article.id}
-              >
-                <Link to={`/articles/${article.slug}`}>
-                  <GatsbyImage
-                    image={article.featureImage.gatsbyImageData}
-                    alt={article.featureImage.alt || name}
-                  />
-                  <div
-                    className="heading-4-regular mt-3 mb-2 md:mt-4 text-torch-red"
-                    dangerouslySetInnerHTML={{
-                      __html: article.title,
-                    }}
-                  />
-									{article.paper.title && (
-										<div className="body-sans">
-											4A Papers: {article.paper.title}
-										</div>
-									)}
-                </Link>
-              </div>
+							<>
+							{article.paper && (
+								<div
+									className="col-span-6 md:col-span-4 xl:col-span-3 mb-8 md:mb-12"
+									key={article.id}
+								>
+									<Link to={`/articles/${article.slug}`}>
+										<GatsbyImage
+											image={article.featureImage.gatsbyImageData}
+											alt={article.featureImage.alt || name}
+										/>
+										<div
+											className="heading-4-regular mt-3 mb-2 md:mt-4 text-torch-red"
+											dangerouslySetInnerHTML={{
+												__html: article.title,
+											}}
+										/>
+											<div className="body-sans">
+												4A Papers: {article.paper.title}
+											</div>
+									</Link>
+								</div>
+							)}
+							</>
             ))}
           {featuredInExhibitions.length > 0 &&
             featuredInExhibitions.map((exhibition: any) => (
