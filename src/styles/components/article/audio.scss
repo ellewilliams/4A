@@ -24,7 +24,12 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px;
+}
+.theme-dark {
+	.play,
+.pause {
   filter: invert(1);
+}
 }
 @media (max-width: 1023px) {
   .play,

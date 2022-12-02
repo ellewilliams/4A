@@ -11,6 +11,7 @@ import { Text } from "../components/article/text"
 import { Quote } from "../components/article/quote"
 import { Image } from "../components/article/image"
 import { Video } from "../components/article/video"
+import { AudioPlayer } from "../components/article/audio"
 import { MobileSideBar } from "../components/mobileSideBar"
 import { useLocation } from "@reach/router"
 import { useThemeColor } from "../hooks/useThemeColor"
@@ -25,6 +26,7 @@ export enum CONTENT_BLOCKS {
   GALLERY = "DatoCmsImageGallery",
   INTERNAL_VIDEO = "DatoCmsInternalVideo",
   EXTERNAL_VIDEO = "DatoCmsExternalVideo",
+	AUDIO_PLAYER = "DatoCmsAudio",
 }
 
 const Article = ({ data, pageContext }) => {
@@ -119,6 +121,8 @@ const Article = ({ data, pageContext }) => {
                 return <Video key={block.id} block={block} />
               case CONTENT_BLOCKS.EXTERNAL_VIDEO:
                 return <Video key={block.id} block={block} />
+							case CONTENT_BLOCKS.AUDIO_PLAYER:
+								return <AudioPlayer key={block.id} block={block} />
             }
           })}
         </div>
@@ -158,6 +162,7 @@ export const query = graphql`
   query ArticleQuery($slug: String!) {
     datoCmsArticle(
       slug: { eq: $slug }
+      meta: { isValid: { eq: true } }
     ) {
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
@@ -238,6 +243,15 @@ export const query = graphql`
             type
           }
           notes
+        }
+				... on DatoCmsAudio {
+          id
+          internal {
+            type
+          }
+          audioFile {
+						url
+					}
         }
       }
       featureColour {
