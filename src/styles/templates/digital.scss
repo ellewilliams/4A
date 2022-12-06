@@ -1,8 +1,11 @@
-.container-fluid.digital-project {
+.container-fluid.digital-project, .latest-digital {
   .block {
     @apply my-6 md:my-8 lg:my-10;
   }
   .artist-name span:nth-of-type(n + 2)::before {
+    content: ", ";
+  }
+	.artist-name span:last-of-type::before {
     content: " and ";
   }
 }

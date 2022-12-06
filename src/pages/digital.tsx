@@ -35,7 +35,7 @@ const DigitalPage = () => {
             <br />
           </div>
         )}
-        <section aria-labelledby="Latest Digital Projects" className="latest">
+        <section aria-labelledby="Latest Digital Projects" className="latest latest-digital">
           <div className="page-grid">
             {latestDigitalProjects.nodes.length > 0 &&
               latestDigitalProjects.nodes.map((project) => (
@@ -52,8 +52,10 @@ const DigitalPage = () => {
                     </Tilt>
                     <div className="my-4 md:my-5">
                       <h3 style={{ color: featureColour }}>{project.title}</h3>
-                      <h4 style={{ color: featureColour }}>
-                        {project.artist[0].name}
+                      <h4 style={{ color: featureColour }} className="artist-name">
+												{project.artist.map(({ name }, index: number) => (
+													<span key={index}>{name}</span>
+												))}
                       </h4>
 											<p className="small-copy mt-2 md:mt-3" style={{ color: featureColour }}>
                         Published {project.publicationDate}

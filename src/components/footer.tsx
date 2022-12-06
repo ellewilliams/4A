@@ -26,6 +26,7 @@ enum FOOTER_PATHS {
   DONATIONCONFIRM = "donation-confirmation",
   EXHIBITION = "exhibitions",
   EVENTS = "events",
+	OPPORTUNITIES = "opportunities",
 }
 
 function pathnameIncludes(pathname: string, path: string): boolean {
@@ -53,6 +54,7 @@ export const Footer = () => {
       case pathnameIncludes(pathname, FOOTER_PATHS.TALKS):
       case pathnameIncludes(pathname, FOOTER_PATHS.ARCHIVE):
       case pathnameIncludes(pathname, FOOTER_PATHS.DONATIONCONFIRM):
+				case pathnameIncludes(pathname, FOOTER_PATHS.OPPORTUNITIES):
         return handleFooterColor("#ededed")
       case pathnameIncludes(pathname, FOOTER_PATHS.PAPERS):
       case pathnameIncludes(pathname, FOOTER_PATHS.ARTICLES):

@@ -49,10 +49,12 @@ export const Online = ({ block, papers, digitalProjects, talks }) => (
               image={digital.featureImage.gatsbyImageData}
               alt={digital.featureImage.alt || digital.title}
             />
-            <h2 className="heading-2-regular text-torch-red my-4 md:my-5">
+            <h2 className="heading-2-regular text-torch-red my-4 md:my-5 artist-name">
               {digital.title}
               <br />
-              {digital.artist[0].name}
+              {digital.artist.map(({ name }, index: number) => (
+								<span key={index}>{name}</span>
+							))}
             </h2>
             <p className="my-4 md:my-5 body-sans underline">Experience</p>
           </Link>

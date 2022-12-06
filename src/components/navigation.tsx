@@ -191,6 +191,9 @@ export const Navigation = () => {
           <li>
             <Link to="/news" aria-label="See News">News</Link>
           </li>
+					<li>
+            <Link to="/opportunities" aria-label="See Opportunities">Opportunities</Link>
+          </li>
           <li>
             <Link to="/visit-us" aria-label="See Visit Us">Visit Us</Link>
           </li>

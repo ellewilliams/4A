@@ -114,7 +114,7 @@ const VisitUsPage = () => {
                     className="col-span-12 md:col-span-10 md:col-start-2 lg:col-span-7 lg:col-start-2 xl:col-span-6 xl:col-start-2 heading-gap"
                   />
                   {address && (
-                    <div className="address col-span-12 md:col-span-10 md:col-start-2 lg:col-span-3 lg:col-start-9 heading-gap">
+                    <div className="address col-span-12 md:col-span-10 md:col-start-2 lg:col-span-4 lg:col-start-9 xl:col-span-3 xl:col-start-9 lg:h-0 heading-gap">
                       <div
                         className="body-sans text-block"
                         dangerouslySetInnerHTML={{
