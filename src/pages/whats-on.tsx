@@ -76,7 +76,9 @@ const WhatsOnPage = ({ data }) => {
             {allDatoCmsEventSeries.map((eventseries) => {
               const { id, slug, formattedTitle, featureImage } = eventseries
               const endDate = new Date(eventseries.endDate)
-              if (endDate >= new Date(Date.now())) {
+							var now = dayjs()
+							var today = now.format("YYYY-MM-DD")
+							if (endDate >= new Date(today)) {
                 return (
                   <div
                     className="event-series col-span-12 md:col-span-6 xl:col-span-6 mb-12 md:mb-16"
@@ -117,7 +119,9 @@ const WhatsOnPage = ({ data }) => {
             </h3>
             {upcomingEvents.map((event) => {
               const endDate = new Date(event.endDate)
-              if (endDate >= new Date(Date.now())) {
+              var now = dayjs()
+							var today = now.format("YYYY-MM-DD")
+							if (endDate >= new Date(today)) {
                 return (
                   <div
                     className="event col-span-6 lg:col-span-4 mb-12 md:mb-16"

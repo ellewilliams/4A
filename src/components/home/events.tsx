@@ -14,7 +14,9 @@ export const Events = ({ events, heading }) => (
     </h3>
     {events.nodes.map((event) => {
       const endDate = new Date(event.endDate)
-      if (endDate >= new Date(Date.now())) {
+			var now = dayjs()
+			var today = now.format("YYYY-MM-DD")
+      if (endDate >= new Date(today)) {
         return (
           <div
             key={event.id}
@@ -49,7 +51,7 @@ export const Events = ({ events, heading }) => (
         )
       }
     })}
-    <div className="col-span-12 page-grid section-gap">
+    <div className="col-span-12 page-grid section-gap see-all-events">
       <div className="col-span-10 col-start-3 md:col-span-3 md:col-start-9">
         <Link
           to="/whats-on#events"
