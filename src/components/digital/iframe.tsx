@@ -36,6 +36,7 @@ export const Iframe = ({ block, featureColour, title }) => {
             height="100%"
             src={block.hyperlink}
             title={title}
+						allow="camera;fullscreen;autoplay;"
           ></iframe>
         </div>
       )}
