@@ -10,21 +10,11 @@ import { GatsbyImage } from "gatsby-plugin-image"
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
-enum Status {
-  CURRENT = "CURRENT",
-  UPCOMING = "UPCOMING",
-}
-
 const WhatsOnPage = ({ data }) => {
   const allDatoCmsEventSeries = data.allDatoCmsEventSeries.nodes
-  const exhibitions = data.allDatoCmsExhibition.nodes
   const upcomingEvents = data.allDatoCmsEvent.nodes
   const upcomingSpecialEvents = data.allDatoCmsSpecialEvent.nodes
-  const currentExhibitions = filter(exhibitions, [
-    "exhibitionStatus",
-    Status.CURRENT,
-  ])
-  const upcomingExhibitions = filter(exhibitions, ["endDate", Status.UPCOMING])
+  const exhibitions = data.allDatoCmsExhibition.nodes
 
   return (
     <Layout theme="white">
@@ -33,20 +23,24 @@ const WhatsOnPage = ({ data }) => {
         <h2 className="heading-feature text-torch-red mb-8 md:mb-10 lg:mb-12">
           What's On
         </h2>
-        {(currentExhibitions.length || allDatoCmsEventSeries.length > 0) && (
+        {(exhibitions.length || allDatoCmsEventSeries.length > 0) && (
           <section
             aria-label="Current Exhibitions"
-            className="current-exhibitions section-gap page-grid"
+            className="current-exhibitions page-grid"
           >
-            {currentExhibitions.map((exhibition) => {
+            {exhibitions.map((exhibition) => {
               const {
                 id,
                 slug,
-                endDate,
                 formattedTitle,
                 locations,
                 featureImageVideo,
               } = exhibition
+							const startDate = new Date(exhibition.startDate)
+							const endDate = new Date(exhibition.endDate)
+							var now = dayjs()
+							var today = now.format("YYYY-MM-DD")
+							if (startDate <= new Date(today) && endDate >= new Date(today)) {
               return (
                 <div
                   className="exhibition col-span-12 md:col-span-6 xl:col-span-6 mb-12 md:mb-16"
@@ -62,7 +56,7 @@ const WhatsOnPage = ({ data }) => {
                       dangerouslySetInnerHTML={{ __html: formattedTitle }}
                     />
                     <div className="details">
-                      <p className="body-sans">Open until {endDate}</p>
+                      <p className="body-sans">Open until {dayjs(endDate).format("D MMMM YYYY")}</p>
                       {locations.map(({ location }) => (
                         <p key={location.title} className="body-sans">
                           {location.title}
@@ -71,7 +65,7 @@ const WhatsOnPage = ({ data }) => {
                     </div>
                   </Link>
                 </div>
-              )
+              )}
             })}
             {allDatoCmsEventSeries.map((eventseries) => {
               const { id, slug, formattedTitle, featureImage } = eventseries
@@ -111,18 +105,18 @@ const WhatsOnPage = ({ data }) => {
         {(upcomingEvents.length || upcomingSpecialEvents.length > 0) && (
           <section
             aria-label="Upcoming Events"
-            className="section-gap page-grid"
+            className="page-grid"
             id="events"
           >
-            <h3 className="heading-3 col-span-12 text-silver-chalice mb-6 md:mb-8">
-              Upcoming Events
-            </h3>
             {upcomingEvents.map((event) => {
               const endDate = new Date(event.endDate)
               var now = dayjs()
 							var today = now.format("YYYY-MM-DD")
 							if (endDate >= new Date(today)) {
                 return (
+									<>
+									<h3 className="whats-on-heading heading-3 section-gap-top col-span-12 text-silver-chalice mb-6 md:mb-8">
+									</h3>
                   <div
                     className="event col-span-6 lg:col-span-4 mb-12 md:mb-16"
                     key={event.id}
@@ -161,6 +155,7 @@ const WhatsOnPage = ({ data }) => {
                       </div>
                     </Link>
                   </div>
+									</>
                 )
               }
             })}
@@ -177,6 +172,9 @@ const WhatsOnPage = ({ data }) => {
               const endDate = new Date(event.endDate)
               if (endDate >= new Date(Date.now())) {
                 return (
+									<>
+									<h3 className="whats-on-heading heading-3 section-gap-top col-span-12 text-silver-chalice mb-6 md:mb-8">
+									</h3>
                   <div
                     className="event col-span-6 lg:col-span-4 mb-12 md:mb-16"
                     key={id}
@@ -206,32 +204,36 @@ const WhatsOnPage = ({ data }) => {
                       </div>
                     </Link>
                   </div>
+									</>
                 )
               }
             })}
           </section>
         )}
-				{(upcomingExhibitions.length > 0) && (
+				{(exhibitions.length > 0) && (
         <section
           aria-label="Upcoming Exhibitions"
           className="medium-gap page-grid"
           id="upcoming-exhibitions"
         >
-          <h3 className="heading-3 col-span-12 text-silver-chalice mb-6 md:mb-8">
-            Upcoming Exhibitions
-          </h3>
-          {upcomingExhibitions.length > 0 &&
-            upcomingExhibitions.map((exhibition) => {
+          {exhibitions.length > 0 &&
+            exhibitions.map((exhibition) => {
               const {
                 id,
                 slug,
-                startDate,
-                endDate,
+								endDate,
                 formattedTitle,
                 locations,
                 featureImageVideo,
               } = exhibition
+							const startDate = new Date(exhibition.startDate)
+							var now = dayjs()
+							var today = now.format("YYYY-MM-DD")
+							if (startDate > new Date(today)) {
               return (
+								<>
+								<h3 className="whats-on-heading heading-3 section-gap-top col-span-12 text-silver-chalice mb-6 md:mb-8">
+								</h3>
                 <div
                   className="exhibition col-span-6 lg:col-span-4 mb-12 md:mb-16"
                   key={id}
@@ -247,7 +249,9 @@ const WhatsOnPage = ({ data }) => {
                     />
                     <div className="details">
                       <p className="body-sans">
-                        {startDate} &#8211; {endDate}
+												{dayjs(startDate).format(
+													"D MMM YYYY"
+												)} – {dayjs(endDate).format("D MMM YYYY")}
                       </p>
                       {locations.map(({ location }) => (
                         <p key={location.title} className="body-sans">
@@ -257,7 +261,7 @@ const WhatsOnPage = ({ data }) => {
                     </div>
                   </Link>
                 </div>
-              )
+							</>)}
             })}
         </section>
 				)}
@@ -278,15 +282,18 @@ export default WhatsOnPage
 export const data = graphql`
   query {
     allDatoCmsExhibition(
-      filter: { exhibitionStatus: { in: ["CURRENT", "UPCOMING", "PAST"] } }
-      sort: { fields: startDate, order: ASC }
+			filter: {
+				meta: { isValid: { eq: true }, status: { ne: "draft" } }
+				endDate: { gte: "2022" }
+			}
+			sort: { fields: startDate, order: ASC }
     ) {
       nodes {
         id
         slug
         exhibitionStatus
-        startDate(formatString: "DD MMMM")
-        endDate(formatString: "DD MMMM YYYY")
+        startDate
+        endDate
         featureImageVideo {
           alt
           gatsbyImageData(placeholder: NONE)

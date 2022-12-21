@@ -1,32 +1,45 @@
 .container-fluid.whats-on {
-    h3 p {
-        b {
-            font-weight: 700!important;
-            -webkit-font-smoothing: anti-aliased!important;
-        }
-    }
-    .current-exhibitions .exhibition .text-inner-wrapper {
-        @media (min-width:1536px) {
-            top: 10%;
-        }
-    }
-    .current-exhibitions .exhibition:nth-of-type(2n+2) .text-wrapper {
-        @media (min-width:1024px) {
-            order: 2;
-        }
-    }
-    .current-exhibitions .exhibition:nth-of-type(2n+2) .gatsby-image-wrapper {
-        @media (min-width:1024px) {
-            order: 1;
-        }
-    }
-    .current-exhibitions .exhibition:last-of-type {
-        margin-bottom: 0!important;
+	h3 p {
+			b {
+					font-weight: 700!important;
+					-webkit-font-smoothing: anti-aliased!important;
+			}
+	}
+	.current-exhibitions .exhibition .text-inner-wrapper {
+			@media (min-width:1536px) {
+					top: 10%;
+			}
+	}
+	.current-exhibitions .exhibition:nth-of-type(2n+2) .text-wrapper {
+			@media (min-width:1024px) {
+					order: 2;
+			}
+	}
+	.current-exhibitions .exhibition:nth-of-type(2n+2) .gatsby-image-wrapper {
+			@media (min-width:1024px) {
+					order: 1;
+			}
+	}
+	.current-exhibitions .exhibition:last-of-type {
+			margin-bottom: 0!important;
 
-        .gatsby-image-wrapper, .text-wrapper {
-            margin-bottom: 0!important;
-        }
-    }
+			.gatsby-image-wrapper, .text-wrapper {
+					margin-bottom: 0!important;
+			}
+	}
+	#upcoming-exhibitions, #events {
+		.whats-on-heading {
+			display:none;
+
+			&:first-of-type {
+				display: block;
+
+				&::after {
+				content: 'Upcoming Exhibitions';
+				}
+			}
+		}
+	}
 }
 .container-fluid.whats-on, .container-fluid.archive {
     .gatsby-image-wrapper {
