@@ -10,7 +10,11 @@ export function usePaperQuery() {
         papersDescription
         credits
       }
-      allDatoCmsPaper(sort: { fields: publishedMonth, order: DESC }) {
+      allDatoCmsPaper(
+					filter: { 
+					meta: { isValid: { eq: true }, status: { ne: "draft" } }}
+					sort: { fields: publishedMonth, order: DESC }
+				) {
         nodes {
           featureColour {
             hex
