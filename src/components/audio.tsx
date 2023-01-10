@@ -24,6 +24,12 @@ export const Audio = ({ src }) => {
     setIsPlaying(!playing)
   }
 
+	const pauseAudio = () => {
+    setIsPlaying(!playing)
+		audioRef.current.pause()
+  }
+
+
   if (src) {
     return (
       <>
@@ -38,7 +44,7 @@ export const Audio = ({ src }) => {
           {playing ? (
             <div
               className="pause col-span-2 md:col-span-2 md:col-start-1 lg:col-span-1 lg:col-start-1"
-              onClick={() => handleClick()}
+              onClick={() => pauseAudio()}
             />
           ) : (
             <div

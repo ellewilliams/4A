@@ -11,12 +11,18 @@ export const AudioPlayer = ({ block }) => {
       audioRef.current.play()
       audioRef.current.volume = 0.3
       setTimeout(() => {
+				setIsPlaying(false)
       }, audioRef.current.duration * 1000)
     }
   }, [playing])
 
   const handleClick = () => {
     setIsPlaying(!playing)
+  }
+
+	const pauseAudio = () => {
+    setIsPlaying(!playing)
+		audioRef.current.pause()
   }
 
 	return (
@@ -32,7 +38,7 @@ export const AudioPlayer = ({ block }) => {
 				{playing ? (
 					<div
 						className="pause col-span-2 md:col-span-2 md:col-start-1 lg:col-span-1 lg:col-start-1"
-						onClick={() => handleClick()}
+						onClick={() => pauseAudio()}
 					/>
 				) : (
 					<div
