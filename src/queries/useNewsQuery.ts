@@ -3,7 +3,9 @@ import { useStaticQuery, graphql } from "gatsby"
 export function useNewsQuery() {
   const data = useStaticQuery(graphql`
     query {
-      datoCmsNews(meta: {isValid: {eq: true}, status: {eq: "published"}}) {
+      datoCmsNews(
+        meta: { isValid: { eq: true }, status: { eq: "published" } }
+      ) {
         title
         slug
         id
@@ -13,11 +15,12 @@ export function useNewsQuery() {
         description
         titleMedia
         descriptionMedia
+        hideNews
       }
       allDatoCmsNewsPost(
         filter: { meta: { isValid: { eq: true }, status: { eq: "published" } } }
         sort: { fields: datePosted, order: DESC }
-        ) {
+      ) {
         nodes {
           title
           id
@@ -32,7 +35,7 @@ export function useNewsQuery() {
       allDatoCmsMediaPost(
         filter: { meta: { isValid: { eq: true }, status: { eq: "published" } } }
         sort: { fields: datePosted, order: DESC }
-        ) {
+      ) {
         nodes {
           title
           id
