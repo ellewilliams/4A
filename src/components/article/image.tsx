@@ -24,7 +24,7 @@ export const Image = ({ block }) => (
     </div>
     <div className={handleImageSize(block.imageSize)}>
       {block.image.title && (
-        <p className="small-sans mt-1 text-silver-chalice">
+        <p className="small-sans mt-1 text-silver-chalice image-caption">
           {block.image.title}
         </p>
       )}

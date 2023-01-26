@@ -101,3 +101,36 @@ main {
 .block-grid {
   @apply grid grid-cols-12 lg:grid-cols-8 3xl:grid-cols-7 gap-x-5 md:gap-x-10 lg:gap-x-12 xl:gap-x-16 my-6 md:my-8 lg:my-10;
 }
+
+//Safe Passage Article
+.safe-passage {
+  background: rgb(156, 168, 203);
+  background: linear-gradient(
+    0deg,
+    rgba(156, 168, 203, 1) 0%,
+    #15203c 50%,
+    rgba(156, 168, 203, 1) 100%
+  );
+}
+
+.safe-passage .col-span-8 .grid:last-of-type .col-span-6 {
+  margin-bottom: 0px;
+}
+
+//Tambourine Road
+.articles-tambourine-road {
+  background: #CC7722;
+  background: linear-gradient(
+    180deg,
+    #301b06 0%,
+		#744414 60%,
+    #CC7722 100%
+  );
+}
+
+//Issue 11 no image captions
+.articles-closed-encounters, .articles-mild-animals, .articles-banoo-s-comb, .articles-editor-s-letter, .articles-the-island-beside-the-boat, .articles-shades-of-longing, .articles-ritual-offering-the-politics-of-womanhood-in-leena-manimekalai-s-maadathy {
+	.image-caption {
+		display:none;
+	}
+}

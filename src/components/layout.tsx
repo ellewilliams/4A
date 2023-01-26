@@ -21,13 +21,14 @@ export default function Layout(props: LayoutProps) {
   const { pathname } = useLocation()
   const safePassage = pathname.includes("safe-passage")
   const papers = pathname.includes("papers/issue")
+	const article = pathname.includes("articles/")
 
   return (
     <>
       <SEO lang="en-US" />
       <div
         className={`${safePassage ? "relative z-10" : ""} ${darkMode ? "theme-dark" : "theme-light"
-          } ${safePassage ? "safe-passage" : ""} ${papers ? "papers-issue" : ""}`}
+          } ${safePassage ? "safe-passage" : ""} ${papers ? "papers-issue" : ""} ${article ? `${pathname.split('/').filter(x => x).join('-')}` : ""}`}
         style={{ backgroundColor: color }}
       >
         <Header featureColour={featureColor} />

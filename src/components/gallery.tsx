@@ -75,7 +75,7 @@ export const Gallery = ({ block }) => {
                 className="mb-1"
               />
               <div className="grid grid-cols-12">
-                <div className="col-span-9 small-sans text-silver-chalice">
+                <div className="col-span-9 small-sans text-silver-chalice image-caption">
                   {image.title}
                 </div>
                 <div className="col-span-3 text-base md:text-l lg:text-xl">
