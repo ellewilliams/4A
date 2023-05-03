@@ -173,6 +173,7 @@ module.exports = {
 						edges {
 							node {
 								name
+								title
 								slug
 								id
 								model {
@@ -276,6 +277,7 @@ module.exports = {
 						edges {
 							node {
 								id
+								title
 								slug
 								formattedTitle
 								featureImageVideo {
@@ -304,6 +306,7 @@ module.exports = {
 						edges {
 							node {
 								id
+								title
 								slug
 								formattedTitle
 								featureImageVideo {
