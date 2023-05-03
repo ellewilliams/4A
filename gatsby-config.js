@@ -173,7 +173,6 @@ module.exports = {
 						edges {
 							node {
 								name
-								title
 								slug
 								id
 								model {
