@@ -19,7 +19,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const papers = await graphql(`
     {
       allDatoCmsPaper(
-        filter: { meta: { isValid: { eq: true }, status: { eq: "published" } } }
+        filter: { meta: { isValid: { eq: true }, status: { ne: "draft" } } }
       ) {
         nodes {
           slug
@@ -43,7 +43,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const articles = await graphql(`
     {
       allDatoCmsArticle(
-        filter: { meta: { isValid: { eq: true }, status: { eq: "published" } } }
+        filter: { meta: { isValid: { eq: true }, status: { ne: "draft" } } }
       ) {
         nodes {
           slug
@@ -71,7 +71,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const creatives = await graphql(`
     {
       allDatoCmsCreative(
-        filter: { meta: { isValid: { eq: true }, status: { eq: "published" } } }
+        filter: { meta: { isValid: { eq: true }, status: { ne: "draft" } } }
       ) {
         nodes {
           slug
@@ -94,7 +94,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const exhibitions = await graphql(`
     {
       allDatoCmsExhibition(
-        filter: { meta: { isValid: { eq: true }, status: { eq: "published" } } }
+        filter: { meta: { isValid: { eq: true }, status: { ne: "draft" } } }
       ) {
         nodes {
           slug
@@ -134,7 +134,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const events = await graphql(`
     {
       allDatoCmsEvent(
-        filter: { meta: { isValid: { eq: true }, status: { eq: "published" } } }
+        filter: { meta: { isValid: { eq: true }, status: { ne: "draft" } } }
       ) {
         nodes {
           slug
@@ -160,7 +160,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const digitalProjects = await graphql(`
     {
       allDatoCmsDigitalProject(
-        filter: { meta: { isValid: { eq: true }, status: { eq: "published" } } }
+        filter: { meta: { isValid: { eq: true }, status: { ne: "draft" } } }
       ) {
         nodes {
           slug
@@ -189,7 +189,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const eventSeries = await graphql(`
     {
       allDatoCmsEventSeries(
-        filter: { meta: { isValid: { eq: true }, status: { eq: "published" } } }
+        filter: { meta: { isValid: { eq: true }, status: { ne: "draft" } } }
       ) {
         nodes {
           slug
@@ -221,7 +221,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const SpecialEvent = await graphql(`
     {
       allDatoCmsSpecialEvent(
-        filter: { meta: { isValid: { eq: true }, status: { eq: "published" } } }
+        filter: { meta: { isValid: { eq: true }, status: { ne: "draft" } } }
       ) {
         nodes {
           slug
