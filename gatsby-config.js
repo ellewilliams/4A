@@ -271,11 +271,12 @@ module.exports = {
 							fields: [meta___publishedAt],
 							order: DESC
 						},
-						filter: {meta: {isValid: {eq: true}, status: {eq: "published"}}}
+						filter: {meta: {isValid: {eq: true}, status: {ne: "draft"}}}
 					) {
 						edges {
 							node {
 								id
+								title
 								slug
 								formattedTitle
 								featureImageVideo {
@@ -299,11 +300,12 @@ module.exports = {
 							fields: [meta___publishedAt],
 							order: DESC
 						},
-						filter: {meta: {isValid: {eq: true}, status: {eq: "published"}}}
+						filter: {meta: {isValid: {eq: true}, status: {ne: "draft"}}}
 					) {
 						edges {
 							node {
 								id
+								title
 								slug
 								formattedTitle
 								featureImageVideo {

@@ -438,6 +438,7 @@ export default Event
 export const query = graphql`
   query EventQuery($slug: String!, $currentDate: Date!) {
     datoCmsEvent(slug: { eq: $slug }) {
+      id
       title
       slug
       description

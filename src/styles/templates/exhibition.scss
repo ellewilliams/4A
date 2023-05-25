@@ -16,6 +16,63 @@
       @apply md:mt-12 lg:mt-16;
     }
   }
+  .body-sans {
+    ol {
+      counter-reset: item;
+      white-space: normal;
+
+      li {
+        counter-increment: item;
+        position: relative;
+        margin-left: 25px;
+        margin-bottom: 1.8rem;
+
+        @media (max-width: 1023px) {
+          margin-bottom: 1.5rem;
+        }
+
+        &:before {
+          content: counters(item, ".") ". ";
+          position: absolute;
+          left: -25px;
+        }
+      }
+    }
+
+    ul {
+      white-space: normal;
+
+      li {
+        position: relative;
+        margin-left: 25px;
+        margin-bottom: 1.8rem;
+
+        @media (max-width: 1023px) {
+          margin-bottom: 1.5rem;
+        }
+
+        &:before {
+          content: "•";
+          position: absolute;
+          left: -25px;
+        }
+      }
+    }
+
+    sup {
+      counter-increment: footnotes;
+      font-size: 0px;
+
+      &::after {
+        content: counter(footnotes);
+        vertical-align: super;
+        margin-left: 2px;
+        @apply text-xs lg:text-sm;
+        position: relative;
+        top: -0.5em;
+      }
+    }
+  }
 }
 .exhibition.image-gallery .gatsby-image-wrapper {
   max-height: 650px;

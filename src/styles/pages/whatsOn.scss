@@ -27,7 +27,7 @@
 					margin-bottom: 0!important;
 			}
 	}
-	#upcoming-exhibitions, #events {
+	#upcoming-exhibitions {
 		.whats-on-heading {
 			display:none;
 
@@ -36,6 +36,19 @@
 
 				&::after {
 				content: 'Upcoming Exhibitions';
+				}
+			}
+		}
+	}
+	#events {
+		.whats-on-heading {
+			display:none;
+
+			&:first-of-type {
+				display: block;
+
+				&::after {
+				content: 'Upcoming Events';
 				}
 			}
 		}
