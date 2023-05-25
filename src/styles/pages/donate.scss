@@ -13,7 +13,13 @@
 	.supporter-tier {
 		.text-block {
 			span {
-				@apply !text-basesans md:!text-lgsans lg:!text-xlsans;
+				font-size: 1.1rem!important;
+			}
+			@media (min-width: 768px) {
+				font-size: 1.28rem!important;
+			}
+			@media (min-width: 1024px) {
+				font-size: 1.4rem!important;
 			}
 		}
 	}

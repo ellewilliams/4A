@@ -155,11 +155,53 @@ const DonatePage = () => {
                   $25
                 </a>
                 <a
+                  href="https://buy.stripe.com/6oEaHWgsreId8H66os"
+                  target="_blank"
+                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
+                >
+                  $88
+                </a>
+								<a
+                  href="https://buy.stripe.com/7sI8zOa436bHe1qdQY"
+                  target="_blank"
+                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
+                >
+                  $100
+                </a>
+                <a
                   href="https://buy.stripe.com/6oEaHWccb7fLe1q145"
                   target="_blank"
                   className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
                 >
                   $250
+                </a>
+								<a
+                  href="https://buy.stripe.com/eVa3fub870Rn5uU8wF"
+                  target="_blank"
+                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
+                >
+                  $500
+                </a>
+								<a
+                  href="https://buy.stripe.com/28o03iekj7fLf5uaEJ"
+                  target="_blank"
+                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
+                >
+                  $888
+                </a>
+								<a
+                  href="https://buy.stripe.com/eVadU85NN6bH1eE7sD"
+                  target="_blank"
+                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
+                >
+                  $1,500
+                </a>
+								<a
+                  href="https://buy.stripe.com/28o7vK3FF0Rn9La9AK"
+                  target="_blank"
+                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
+                >
+                  $2,000
                 </a>
                 <a
                   href="https://buy.stripe.com/28oeYcdgfeIde1q6oq"
@@ -167,27 +209,6 @@ const DonatePage = () => {
                   className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
                 >
                   $2,500
-                </a>
-                <a
-                  href="https://buy.stripe.com/6oEaHWgsreId8H66os"
-                  target="_blank"
-                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
-                >
-                  $88
-                </a>
-                <a
-                  href="https://buy.stripe.com/28o03iekj7fLf5uaEJ"
-                  target="_blank"
-                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
-                >
-                  $888
-                </a>
-                <a
-                  href="https://buy.stripe.com/3cs8zOfon9nT1eE6ov"
-                  target="_blank"
-                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
-                >
-                  $2,888
                 </a>
               </div>
             </section>
