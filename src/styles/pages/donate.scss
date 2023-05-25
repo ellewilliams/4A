@@ -9,4 +9,12 @@
     border-width:1px;
     @apply border-light-grey;
   }
+
+	.supporter-tier {
+		.text-block {
+			span {
+				@apply !text-basesans md:!text-lgsans lg:!text-xlsans;
+			}
+		}
+	}
 }
