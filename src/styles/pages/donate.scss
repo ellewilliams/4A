@@ -14,12 +14,12 @@
 		.text-block {
 			span {
 				font-size: 1.1rem!important;
-			}
-			@media (min-width: 768px) {
-				font-size: 1.28rem!important;
-			}
-			@media (min-width: 1024px) {
-				font-size: 1.4rem!important;
+				@media (min-width: 768px) {
+					font-size: 1.28rem!important;
+				}
+				@media (min-width: 1024px) {
+					font-size: 1.4rem!important;
+				}
 			}
 		}
 	}
