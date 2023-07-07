@@ -3,7 +3,7 @@
   publish = "public"
   functions = "functions"
 [build.environment]
-  DATO_API_TOKEN="5c4272efb5307202ecbb7a0cbbe4cd"
+  DATO_API_TOKEN="b01ad300acec9a5fc24d8e521a1148"
   SITE_TITLE="4A Centre for Contemporary Asian Art"
   SITE_DESCRIPTION="4A Centre for Contemporary Asian Art fosters excellence and innovation in contemporary Asian and Australian culture through research, documentation, development and presentation of contemporary visual art from the Region."
   SITE_KEYWORDS="4A, Contemporary Art, Asian Art, Sydney, Gallery, Visual Art, Asian, Australian, Art"

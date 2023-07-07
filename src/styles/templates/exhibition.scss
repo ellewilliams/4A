@@ -16,6 +16,9 @@
       @apply md:mt-12 lg:mt-16;
     }
   }
+	.locations .location:last-of-type {
+		@apply mb-0;
+	}
   .body-sans {
     ol {
       counter-reset: item;

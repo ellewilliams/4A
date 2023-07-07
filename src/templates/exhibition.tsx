@@ -23,6 +23,7 @@ const Exhibition = ({ data, pageContext }) => {
     endDate,
     formattedTitle,
     locations,
+		pastLocations,
     artists,
     curators,
     events,
@@ -139,7 +140,7 @@ const Exhibition = ({ data, pageContext }) => {
                 {`${endDate}`}
               </h4>
             </div>
-            <div className="main-locations col-span-12 sm:col-span-6">
+            <div className="main-locations locations col-span-12 sm:col-span-6">
               <h4 className="heading-4 mb-4 text-silver-chalice mt-12 sm:mt-0 lg:mt-16 xl:mt-20">
                 Location
               </h4>
@@ -152,6 +153,28 @@ const Exhibition = ({ data, pageContext }) => {
                     <p className="location-address body-sans my-4">
                       {location?.address}
                     </p>
+                    {exhibitionDetails && (
+                      <div
+                        className="location-dates body-sans"
+                        dangerouslySetInnerHTML={{
+                          __html: exhibitionDetails,
+                        }}
+                      />
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+						<div className="past-locations locations col-span-12 sm:col-span-6 hidden lg:block">
+              <h4 className="heading-4 mb-4 text-silver-chalice mt-12 sm:mt-0 lg:mt-16 xl:mt-20">
+                Past Locations
+              </h4>
+              {pastLocations.map(({ location, exhibitionDetails, id }) => (
+                <div key={id} className="location mb-8 md:mb-10">
+                  <h4 className="location-name heading-3-regular mb-4">
+                    {location.title}
+                  </h4>
+                  <div className="location-details">
                     {exhibitionDetails && (
                       <div
                         className="location-dates body-sans"
@@ -301,7 +324,31 @@ const Exhibition = ({ data, pageContext }) => {
             </div>
           )}
           <div className="order-4 col-span-12 md:col-span-9 lg:col-start-2 lg:col-span-7 xl:col-span-6 xl:col-start-2 mb-12 lg:mb-16 xl:mb-20">
-            {headerImage.title && (
+						{pastLocations && (
+							<div className="past-locations locations col-span-12 sm:col-span-6 lg:hidden mb-12 lg:mb-16 xl:mb-20">
+								<h4 className="heading-4 mb-4 text-silver-chalice">
+									Past Locations
+								</h4>
+								{pastLocations.map(({ location, exhibitionDetails, id }) => (
+									<div key={id} className="location mb-8 md:mb-10">
+										<h4 className="location-name heading-3-regular mb-4">
+											{location.title}
+										</h4>
+										<div className="location-details">
+											{exhibitionDetails && (
+												<div
+													className="location-dates body-sans"
+													dangerouslySetInnerHTML={{
+														__html: exhibitionDetails,
+													}}
+												/>
+											)}
+										</div>
+									</div>
+								))}
+							</div>
+						)}
+						{headerImage.title && (
               <p className="small-sans mb-4 md:mb-6 lg:mb-8">
                 Top image: {headerImage.title}
               </p>
@@ -403,6 +450,15 @@ export const query = graphql`
       endDate(formatString: "DD MMMM YYYY")
       formattedTitle
       locations {
+        id
+        exhibitionDetails
+        location {
+          id
+          title
+          address
+        }
+      }
+			pastLocations {
         id
         exhibitionDetails
         location {
