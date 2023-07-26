@@ -10,15 +10,6 @@ export function useFooterQuery() {
         email
         mailchimpEndpoint
         partnerAcknowledgement
-        partnerLogos {
-          ... on DatoCmsPartnerLogo {
-            logo {
-              alt
-              gatsbyImageData(placeholder: NONE)
-            }
-            link
-          }
-        }
 				partnerLogoCategories {
 					... on DatoCmsPartnerLogoCategory {
 						categoryName
