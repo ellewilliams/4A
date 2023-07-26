@@ -19,6 +19,21 @@ export function useFooterQuery() {
             link
           }
         }
+				partnerLogoCategories {
+					... on DatoCmsPartnerLogoCategory {
+						categoryName
+						width
+						logos {
+							... on DatoCmsPartnerLogo {
+								logo {
+									alt
+									gatsbyImageData(placeholder: NONE)
+								}
+								link
+							}
+						}
+					}
+				}
         postalAddress
         telephone
         title

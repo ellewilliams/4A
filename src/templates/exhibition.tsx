@@ -29,6 +29,7 @@ const Exhibition = ({ data, pageContext }) => {
     events,
     credit,
     creditLogos,
+		eventRecording,
     logoBlock,
     imageGallery,
     headerImage,
@@ -231,6 +232,19 @@ const Exhibition = ({ data, pageContext }) => {
                     </a>
                   ))}
                 </div>
+              </div>
+            )}
+						{eventRecording && (
+              <div className="event-recording body-sans">
+                <h4 className="heading-4 mb-4 text-silver-chalice mt-12 lg:mt-16 xl:mt-20">
+                  Talk
+                </h4>
+                <div
+                  className="player-embed mt-5 md:mt-7"
+                  dangerouslySetInnerHTML={{
+                    __html: eventRecording,
+                  }}
+                />
               </div>
             )}
             {exhibitionVideo && (
@@ -494,6 +508,7 @@ export const query = graphql`
           aspectRatio
         }
       }
+			eventRecording
       exhibitionVideo {
         url
         title

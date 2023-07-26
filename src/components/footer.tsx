@@ -174,27 +174,35 @@ export const Footer = () => {
               className="w-full col-span-12 mb-12 xl:mb-14"
               style={{ borderBottom: "2px solid #C6C6C6" }}
             />
-            <div className="col-span-12 md:col-span-6 mb-8 xl:col-span-5">
-              <div
-                id="partner-logos"
-                className="grid grid-cols-4 gap-3 xl:grid-cols-5 xl:gap-4"
-              >
-                {datoCmsSiteSetting.partnerLogos.map(
-                  ({ link, logo }, index: number) => (
-                    <a href={link} target="_blank" key={index}>
-                      <GatsbyImage
-                        image={logo.gatsbyImageData}
-                        alt={logo.alt}
-                        className="h-14 col-span-1 opacity-50"
-                      />
-                    </a>
-                  )
-                )}
-              </div>
+            <div className="col-span-12 md:col-span-6 xl:col-span-5 grid grid-cols-2 grid-gap">
+							{datoCmsSiteSetting.partnerLogoCategories.map(
+								({ categoryName, width, logos }, index: number) => (
+								<div className={`${width ? "md:col-span-2" : "md:col-span-1"} col-span-2 logo-category mb-6 md:mb-8`}>
+									<div
+										id="partner-logos"
+										className={`${width ? "xl:grid-cols-5 xl:gap-4" : "md:grid-cols-2"} grid grid-cols-4 gap-3`}
+									>
+										<div className="col-span-4 xl:col-span-5 small-sans font-medium opacity-50">
+											{categoryName}
+										</div>
+										{logos.map(
+											({ link, logo }, index: number) => (
+												<a href={link} target="_blank" key={index}>
+													<GatsbyImage
+														image={logo.gatsbyImageData}
+														alt={logo.alt}
+														className="h-14 col-span-1 opacity-50"
+													/>
+												</a>
+											)
+										)}
+									</div>
+								</div>
+							))}
             </div>
             <div className="md:col-start-7 col-span-12 md:col-span-5 mb-8">
               <div
-                className="text-xs font-sans antialiased opacity-50 mb-6"
+                className="small-sans font-sans antialiased opacity-50 mb-6"
                 dangerouslySetInnerHTML={{
                   __html: datoCmsSiteSetting.partnerAcknowledgement,
                 }}
