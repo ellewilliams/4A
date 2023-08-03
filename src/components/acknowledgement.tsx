@@ -7,10 +7,9 @@ interface AcknowledgementProps {
 
 export const Acknowledgement = (props: AcknowledgementProps) => {
   const { text } = props
-  const [showAcknowledgement, setShowAcknowledgement] = useState<boolean>(true)
+  const [showAcknowledgement, setShowAcknowledgement] = useState<boolean>(false)
 
   useEffect(() => {
-    const timerId = setTimeout(() => {
     const hasBeenShownToday = sessionStorage.getItem("acknowledgementShown") === "true";
     
     if (!hasBeenShownToday) {
