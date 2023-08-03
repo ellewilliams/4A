@@ -97,21 +97,6 @@ const DonatePage = () => {
               </svg>
             </Link>
             <Link
-              aria-labelledby="Scroll to Patron's Program"
-              to={"#patrons-program"}
-            >
-              Patron's program{" "}
-              <svg
-                width="22"
-                height="13"
-                viewBox="0 0 22 13"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M1 1L11 11L21 1" stroke="#9C9C9C" strokeWidth="2" />
-              </svg>
-            </Link>
-            <Link
               aria-labelledby="Scroll to Our Supporters"
               to={"#our-supporters"}
             >
@@ -238,25 +223,6 @@ const DonatePage = () => {
                 )}
               </div>
             ))}
-          </section>
-          <section
-            aria-labelledby="Patrons Program"
-            id="patrons-program"
-            className="col-span-12 page-grid section-gap"
-          >
-            <h3 className="heading-feature text-torch-red col-span-12 heading-gap">
-              {titlePatrons}
-            </h3>
-            {descriptionPatrons && (
-              <div className="col-span-12 md:col-span-10 md:col-start-2 lg:col-span-7 lg:col-start-2 xl:col-span-6 xl:col-start-2">
-                <div
-                  className="body-sans text-block"
-                  dangerouslySetInnerHTML={{
-                    __html: descriptionPatrons,
-                  }}
-                />
-              </div>
-            )}
           </section>
           <section
             aria-labelledby="Our Supporters"

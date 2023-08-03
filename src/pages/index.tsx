@@ -42,7 +42,6 @@ const IndexPage = ({ data }) => {
         )}
       </HelmetDatoCms>
       <h1 className="visually-hidden">4A Center for Contemporary Asian Art</h1>
-      <Acknowledgement text={acknowledgementOfCountry} />
       <div className="home page-top">
         <div className="container-fluid">
           <div className="relative">
@@ -365,6 +364,7 @@ const IndexPage = ({ data }) => {
           })}
         </section>
       </div>
+			<Acknowledgement text={acknowledgementOfCountry} />
     </Layout>
   )
 }

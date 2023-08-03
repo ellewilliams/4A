@@ -95,3 +95,10 @@ strong,
 .small-sans-medium {
   @apply font-sans text-sm-tight xl:text-md antialiased font-medium;
 }
+
+
+// Large
+.body-sans-large {
+  @apply font-sans text-lg sm:text-xl md:text-2xl lg:text-2.5xl xl:text-3xl antialiased;
+	line-height: 125%;
+}

@@ -21,8 +21,6 @@ export function useDonateQuery() {
           title
           description
         }
-        titlePatrons
-        descriptionPatrons
         titleSupporters
         supporterTiers {
           title
