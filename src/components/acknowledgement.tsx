@@ -39,6 +39,7 @@ export const Acknowledgement = (props: AcknowledgementProps) => {
   const acknowledgementStyle = {
     opacity,
     transition: "opacity 0.5s ease-in-out",
+		visibility: showAcknowledgement ? "visible" : "hidden",
   };
 
   if (text && showAcknowledgement) {
