@@ -11,10 +11,18 @@ export const Acknowledgement = (props: AcknowledgementProps) => {
 
   useEffect(() => {
     const timerId = setTimeout(() => {
-      setShowAcknowledgement(false)
-    }, 5000)
+    const hasBeenShownToday = sessionStorage.getItem("acknowledgementShown") === "true";
+    
+    if (!hasBeenShownToday) {
+      setShowAcknowledgement(true);
+    } else {
+      const timerId = setTimeout(() => {
+        setShowAcknowledgement(false);
+        sessionStorage.setItem("acknowledgementShown", "true");
+      }, 5000);
 
-    return () => clearTimeout(timerId)
+      return () => clearTimeout(timerId);
+    }
   }, [])
 
 	const handleAcknowledgementClick = () => {
