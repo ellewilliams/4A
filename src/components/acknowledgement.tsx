@@ -17,21 +17,6 @@ export const Acknowledgement = (props: AcknowledgementProps) => {
     return () => clearTimeout(timerId)
   }, [])
 
-	useEffect(() => {
-    const handleScroll = () => {
-      if (showAcknowledgement) {
-        document.body.classList.add("no-scroll");
-      } else {
-        document.body.classList.remove("no-scroll");
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [showAcknowledgement]);
-
 	const handleAcknowledgementClick = () => {
     setShowAcknowledgement(false);
   };
