@@ -9,19 +9,22 @@ export const Acknowledgement = (props: AcknowledgementProps) => {
   const { text } = props;
   const [showAcknowledgement, setShowAcknowledgement] = useState<boolean>(true);
   const [opacity, setOpacity] = useState<number>(0);
+	const [visibilityClass, setVisibilityClass] = useState<string>("not-visible"); // Initial class
 
   useEffect(() => {
     const hasBeenShownToday = sessionStorage.getItem("acknowledgementShown") === "true";
 
     if (!hasBeenShownToday) {
       setShowAcknowledgement(true);
-      setOpacity(1); 
+      setOpacity(1);
+      setVisibilityClass("visible"); // Set class to visible
 
       const timerId = setTimeout(() => {
-        setOpacity(0); 
+        setOpacity(0);
         setTimeout(() => {
-					setShowAcknowledgement(false);
-				}, 500);
+          setShowAcknowledgement(false);
+          setVisibilityClass("not-visible"); // Set class to not-visible
+        }, 500);
         sessionStorage.setItem("acknowledgementShown", "true");
       }, 5000);
 
@@ -30,22 +33,23 @@ export const Acknowledgement = (props: AcknowledgementProps) => {
   }, []);
 
   const handleAcknowledgementClick = () => {
-    setOpacity(0); 
+    setOpacity(0);
     setTimeout(() => {
       setShowAcknowledgement(false);
+      setVisibilityClass("not-visible"); // Set class to not-visible
+			sessionStorage.setItem("acknowledgementShown", "true");
     }, 500);
   };
 
   const acknowledgementStyle = {
     opacity,
     transition: "opacity 0.5s ease-in-out",
-		visibility: showAcknowledgement ? "visible" : "hidden",
   };
 
   if (text && showAcknowledgement) {
     return (
       <div
-        className="aoc-short z-50 fixed bottom-0 w-full h-full bg-black text-white p-3 pb-4 text-center page-grid"
+        className={`aoc-short z-50 fixed bottom-0 w-full h-full bg-black text-white p-3 pb-4 text-center page-grid ${visibilityClass}`}
         onClick={handleAcknowledgementClick} 
 				style={acknowledgementStyle}
       >

@@ -1,5 +1,5 @@
 header.header {
-  @apply z-20 relative;
+  @apply z-20 relative overflow-visible;
 	min-height: 50px;
 	@media screen and (min-width: 768px) {
 		min-height: 100px;
