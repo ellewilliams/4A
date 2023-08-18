@@ -22,7 +22,7 @@ enum FOOTER_PATHS {
   PEOPLE = "people",
   TALKS = "talks",
   ARCHIVE = "archive",
-  DIGITAL = "digital",
+  DIGITAL = "4a.com.au/digital",
   DONATIONCONFIRM = "donation-confirmation",
   EXHIBITION = "exhibitions",
   EVENTS = "events",
