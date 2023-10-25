@@ -16,6 +16,17 @@ const Creative = ({ data }) => {
 	const featuredInSpecialEvents = data.allDatoCmsSpecialEvent.nodes
   const featuredInDigitalProjects = data.allDatoCmsDigitalProject.nodes
 
+	// Account for exhibitions where someone is an artist and a curator
+	const uniqueExhibitionIds = new Set();
+	const filteredFeaturedInExhibitions = featuredInExhibitions.filter((exhibition) => {
+		const exhibitionId = exhibition.id; 
+		if (uniqueExhibitionIds.has(exhibitionId)) {
+				return false;
+		}
+		uniqueExhibitionIds.add(exhibitionId);
+		return true;
+	});
+
   return (
     <Layout theme="white">
       <HelmetDatoCms seo={seoMetaTags} />
@@ -90,8 +101,8 @@ const Creative = ({ data }) => {
 							)}
 							</>
             ))}
-          {featuredInExhibitions.length > 0 &&
-            featuredInExhibitions.map((exhibition: any) => (
+          {filteredFeaturedInExhibitions.length > 0 &&
+            filteredFeaturedInExhibitions.map((exhibition: any) => (
               <div
                 className="col-span-6 md:col-span-4 xl:col-span-3 mb-8 md:mb-12"
                 key={exhibition.id}
