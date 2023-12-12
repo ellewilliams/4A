@@ -122,14 +122,18 @@ const SpecialEvent = ({ data, pageContext }) => {
                 __html: description,
               }}
             />
-            <div className="small-sans mt-4 md:mt-6 lg:mt-8">
-              Image credit:&nbsp;
-              {headerImageGallery.map(({ title }, index: number) => (
-                <div key={index} className="inline">
-                  {title} /&nbsp;
-                </div>
-              ))}
-            </div>
+            {headerImageGallery.some(item => item.title) && (
+							<div className="small-sans mt-4 md:mt-6 lg:mt-8">
+								Image credit:&nbsp;
+								{headerImageGallery.map(({ title }, index: number) => (
+									title && (
+										<div key={index} className="inline">
+											{title} /&nbsp;
+										</div>
+									)
+								))}
+							</div>
+						)}
           </div>
           {program.length > 0 && (
             <div className="order-3 col-span-12 lg:col-start-2 lg:col-span-10 mt-12 lg:mt-16 xl:mt-20">
