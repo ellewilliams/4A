@@ -99,7 +99,11 @@ const IndexPage = ({ data }) => {
                       }}
                     />
                     <div className="details">
-                      {topExhibition.exhibitionStatus == "CURRENT" ? (
+											{topExhibition.dateTextOverride ? (
+												<p className="body-sans">
+													{topExhibition.dateTextOverride}
+												</p>
+											) : topExhibition.exhibitionStatus == "CURRENT" ? (
                         <p className="body-sans">
                           Open until {topExhibition.endDate}
                         </p>
@@ -189,7 +193,11 @@ const IndexPage = ({ data }) => {
                       }}
                     />
                     <div className="details">
-                      {leftExhibition.exhibitionStatus == "CURRENT" ? (
+											{leftExhibition.dateTextOverride ? (
+												<p className="body-sans">
+													{leftExhibition.dateTextOverride}
+												</p>
+											) : leftExhibition.exhibitionStatus == "CURRENT" ? (
                         <p className="body-sans">
                           Open until {leftExhibition.endDate}
                         </p>
@@ -279,7 +287,11 @@ const IndexPage = ({ data }) => {
                       }}
                     />
                     <div className="details">
-                      {rightExhibition.exhibitionStatus == "CURRENT" ? (
+											{rightExhibition.dateTextOverride ? (
+												<p className="body-sans">
+													{rightExhibition.dateTextOverride}
+												</p>
+											) : rightExhibition.exhibitionStatus == "CURRENT" ? (
                         <p className="body-sans">
                           Open until {rightExhibition.endDate}
                         </p>
@@ -389,6 +401,7 @@ export const query = graphql`
           exhibitionStatus
           startDate(formatString: "DD MMMM YYYY")
           endDate(formatString: "DD MMMM YYYY")
+					dateTextOverride
           featureImageVideo {
             alt
             gatsbyImageData(width: 1500, placeholder: NONE)
@@ -426,6 +439,7 @@ export const query = graphql`
           exhibitionStatus
           startDate(formatString: "DD MMMM YYYY")
           endDate(formatString: "DD MMMM YYYY")
+					dateTextOverride
           featureImageVideo {
             alt
             gatsbyImageData(width: 800, placeholder: NONE)
@@ -460,6 +474,7 @@ export const query = graphql`
           exhibitionStatus
           startDate(formatString: "DD MMMM YYYY")
           endDate(formatString: "DD MMMM YYYY")
+					dateTextOverride
           featureImageVideo {
             alt
             gatsbyImageData(width: 800, placeholder: NONE)
@@ -545,6 +560,7 @@ export const query = graphql`
         exhibitionStatus
         startDate(formatString: "DD MMMM")
         endDate(formatString: "DD MMMM YYYY")
+				dateTextOverride
         featureImageVideo {
           alt
           gatsbyImageData(width: 1440, placeholder: NONE)
@@ -562,7 +578,7 @@ export const query = graphql`
       }
     }
     allDatoCmsEvent(
-      filter: { endDate: { gte: "2022" } }
+      filter: { endDate: { gte: "2023" }, meta: {isValid: {eq: true}, status: {ne: "draft"}} }
       sort: { fields: eventDates___eventDateTime, order: DESC }
     ) {
       nodes {
@@ -586,6 +602,7 @@ export const query = graphql`
         }
         slug
         title
+				dateTextOverride
       }
     }
     datoCmsAbout {

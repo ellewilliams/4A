@@ -21,6 +21,7 @@ const Exhibition = ({ data, pageContext }) => {
     description,
     startDate,
     endDate,
+		dateTextOverride,
     formattedTitle,
     locations,
 		pastLocations,
@@ -134,12 +135,18 @@ const Exhibition = ({ data, pageContext }) => {
           <div className="order-1 lg:order-2 mb-12 lg:mb-0 col-span-12 lg:col-span-4 lg:col-start-9 2xl:col-span-3 2xl:col-start-9 grid grid-cols-12 gap-x-5 md:gap-x-10 lg:block">
             <div className="when col-span-12 sm:col-span-6">
               <h4 className="heading-4 mb-4 text-silver-chalice">When</h4>
-              <h4 className="heading-3-regular">
-                {`${startDate}`}
-                &nbsp;-
-                <br />
-                {`${endDate}`}
-              </h4>
+							{dateTextOverride ? (
+								<h4 className="heading-3-regular">
+									{dateTextOverride}
+								</h4>
+							) : startDate ? (
+								<h4 className="heading-3-regular">
+									{`${startDate}`}
+									&nbsp;-
+									<br />
+									{`${endDate}`}
+              	</h4>
+							) : null}
             </div>
             <div className="main-locations locations col-span-12 sm:col-span-6">
               <h4 className="heading-4 mb-4 text-silver-chalice mt-12 sm:mt-0 lg:mt-16 xl:mt-20">
@@ -464,6 +471,7 @@ export const query = graphql`
       }
       startDate(formatString: "DD MMMM YYYY")
       endDate(formatString: "DD MMMM YYYY")
+			dateTextOverride
       formattedTitle
       locations {
         id

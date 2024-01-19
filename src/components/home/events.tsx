@@ -34,12 +34,18 @@ export const Events = ({ events, heading }) => (
                 <p className="body-sans">
                   <b>{event.eventType?.eventType}</b>
                 </p>
-                {event.eventDates.length &&
+							{event.dateTextOverride ? (
+								<p className="body-sans">
+									{event.dateTextOverride}
+								</p>
+							) : event.eventDates.length ? (
+								event.eventDates.length &&
                   event.eventDates.map(({ eventDateTime }, index: number) => (
                     <p key={index} className="body-sans">
                       {dayjs(eventDateTime).format("dddd, D MMMM YYYY, h:mma")}
                     </p>
-                  ))}
+                  ))
+							) : null}
                 {event.locations.map(({ location }, index: number) => (
                   <p key={index} className="body-sans">
                     {location.title}

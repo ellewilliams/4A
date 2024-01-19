@@ -35,6 +35,7 @@ const WhatsOnPage = ({ data }) => {
                 formattedTitle,
                 locations,
                 featureImageVideo,
+								dateTextOverride,
               } = exhibition
 							const startDate = new Date(exhibition.startDate)
 							const endDate = new Date(exhibition.endDate)
@@ -56,7 +57,13 @@ const WhatsOnPage = ({ data }) => {
                       dangerouslySetInnerHTML={{ __html: formattedTitle }}
                     />
                     <div className="details">
-                      <p className="body-sans">Open until {dayjs(endDate).format("D MMMM YYYY")}</p>
+											{dateTextOverride ? (
+												<p className="body-sans">
+													{dateTextOverride}
+												</p>
+											) : (
+                      	<p className="body-sans">Open until {dayjs(endDate).format("D MMMM YYYY")}</p>
+											)}
                       {locations.map(({ location }) => (
                         <p key={location.title} className="body-sans">
                           {location.title}
@@ -137,16 +144,18 @@ const WhatsOnPage = ({ data }) => {
                         <p className="body-sans">
                           <b>{event.eventType?.eventType}</b>
                         </p>
-                        {event.eventDates.length &&
-                          event.eventDates.map(
-                            ({ eventDateTime }, index: number) => (
-                              <p key={index} className="body-sans">
-                                {dayjs(eventDateTime).format(
-                                  "dddd, D MMMM YYYY, h:mma"
-                                )}
-                              </p>
-                            )
-                          )}
+                        {event.dateTextOverride ? (
+													<p className="body-sans">
+														{event.dateTextOverride}
+													</p>
+												) : event.eventDates.length ? (
+													event.eventDates.length &&
+														event.eventDates.map(({ eventDateTime }, index: number) => (
+															<p key={index} className="body-sans">
+																{dayjs(eventDateTime).format("dddd, D MMMM YYYY, h:mma")}
+															</p>
+														))
+												) : null}
                         {event.locations.map(({ location }) => (
                           <p key={location.title} className="body-sans">
                             {location.title}
@@ -225,6 +234,7 @@ const WhatsOnPage = ({ data }) => {
                 formattedTitle,
                 locations,
                 featureImageVideo,
+								dateTextOverride,
               } = exhibition
 							const startDate = new Date(exhibition.startDate)
 							var now = dayjs()
@@ -249,9 +259,15 @@ const WhatsOnPage = ({ data }) => {
                     />
                     <div className="details">
                       <p className="body-sans">
-												{dayjs(startDate).format(
-													"D MMM YYYY"
-												)} – {dayjs(endDate).format("D MMM YYYY")}
+											{dateTextOverride ? (
+												<p className="body-sans">
+													{dateTextOverride}
+												</p>
+											) : (
+												<p className="body-sans">
+													{dayjs(startDate).format("D MMM YYYY")} – {dayjs(endDate).format("D MMM YYYY")}
+												</p>
+											)}
                       </p>
                       {locations.map(({ location }) => (
                         <p key={location.title} className="body-sans">
@@ -294,6 +310,7 @@ export const data = graphql`
         exhibitionStatus
         startDate
         endDate
+				dateTextOverride
         featureImageVideo {
           alt
           gatsbyImageData(placeholder: NONE)
@@ -322,6 +339,7 @@ export const data = graphql`
           eventDateTime
           id
         }
+				dateTextOverride
         id
         slug
         eventType {

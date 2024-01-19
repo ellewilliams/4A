@@ -18,6 +18,7 @@ const Event = ({ data, pageContext }) => {
     title,
     description,
     eventDates,
+		dateTextOverride,
     formattedTitle,
     locations,
     artists,
@@ -93,12 +94,17 @@ const Event = ({ data, pageContext }) => {
           <div className="order-1 lg:order-2 mb-12 lg:mb-0 col-span-12 lg:col-span-4 lg:col-start-9 2xl:col-span-3 2xl:col-start-9 grid grid-cols-12 gap-x-5 md:gap-x-10 lg:block">
             <div className="when col-span-12 sm:col-span-6">
               <h4 className="heading-4 mb-4 text-silver-chalice">When</h4>
-              {eventDates.length &&
-                eventDates.map(({ eventDateTime }, index: number) => (
-                  <h4 key={index} className="heading-3-regular">
-                    {dayjs(eventDateTime).format("dddd, D MMMM YYYY, h:mma")}
-                  </h4>
-                ))}
+							{dateTextOverride ? (
+								<h4 className="heading-3-regular">
+									{dateTextOverride}
+								</h4>
+							) : eventDates.length ? (
+								eventDates.map(({ eventDateTime }, index: number) => (
+									<h4 key={index} className="heading-3-regular">
+										{dayjs(eventDateTime).format("dddd, D MMMM YYYY, h:mma")}
+									</h4>
+								))
+							) : null}
             </div>
             {locations.length > 0 && (
               <div className="main-locations col-span-12 sm:col-span-6">
@@ -449,6 +455,7 @@ export const query = graphql`
         eventDateTime
         id
       }
+			dateTextOverride
       formattedTitle
       locations {
         id
