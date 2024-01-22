@@ -235,6 +235,7 @@ const Event = ({ data, pageContext }) => {
                       slug,
                       startDate,
                       endDate,
+											dateTextOverride,
                     }) => {
                       return (
                         <div
@@ -263,9 +264,15 @@ const Event = ({ data, pageContext }) => {
                                 }}
                               />
                             </Link>
-                            <p className="body-sans" key={id}>
-                              {startDate} &#8211; {endDate}
-                            </p>
+														{dateTextOverride ? (
+															<p className="body-sans">
+																{dateTextOverride}
+															</p>
+														) : startDate ? (
+															<p className="body-sans" key={id}>
+																{startDate} &#8211; {endDate}
+															</p>
+														) : null}
                             {locations.map(({ location }) => (
                               <p key={location.title} className="body-sans">
                                 {location.title}
@@ -416,14 +423,16 @@ const Event = ({ data, pageContext }) => {
                   <p className="body-sans">
                     <b>{event.eventType?.eventType}</b>
                   </p>
-                  {event.eventDates.length &&
-                    event.eventDates.map(({ eventDateTime }, index: number) => (
-                      <p key={index} className="body-sans">
-                        {dayjs(eventDateTime).format(
-                          "dddd, D MMMM YYYY, h:mma"
-                        )}
-                      </p>
-                    ))}
+									{event.dateTextOverride ? (
+										<p className="body-sans">{event.dateTextOverride}</p>
+									) : (
+										event.eventDates.length > 0 &&
+										event.eventDates.map(({ eventDateTime }, index) => (
+											<p key={index} className="body-sans">
+												{dayjs(eventDateTime).format("dddd, D MMMM YYYY, h:mma")}
+											</p>
+										))
+									)}
                   {event.locations.map(({ location }) => (
                     <p key={location.title} className="body-sans">
                       {location.title}
@@ -574,6 +583,7 @@ export const query = graphql`
             title
           }
         }
+				dateTextOverride
         featureImageVideo {
           alt
           gatsbyImageData

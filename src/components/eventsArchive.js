@@ -31,6 +31,7 @@ export const EventsArchive = () => {
 				}
 				id
 				endDate
+				dateTextOverride
 				slug
 				eventStatus
 				eventType {
@@ -164,6 +165,7 @@ export const EventsArchive = () => {
 									formattedTitle,
 									locations,
 									featureImageVideo,
+									dateTextOverride,
 								} = item
 								const endDate = new Date(item.endDate)
 							var now = dayjs()
@@ -187,14 +189,19 @@ export const EventsArchive = () => {
 											<p className="body-sans">
 												<b>{eventType?.eventType}</b>
 											</p>
-											{eventDates.length &&
-												eventDates.map(({ eventDateTime }) => (
-													<p className="body-sans">
-														{dayjs(eventDateTime).format(
-															"dddd, D MMMM YYYY, h:mma"
-														)}
-													</p>
-												))}
+											{dateTextOverride ? (
+												<p className="body-sans">{dateTextOverride}</p>
+											) : (
+												eventDates.length > 0 && (
+													<>
+														{eventDates.map(({ eventDateTime }) => (
+															<p className="body-sans" key={eventDateTime}>
+																{dayjs(eventDateTime).format("dddd, D MMMM YYYY, h:mma")}
+															</p>
+														))}
+													</>
+												)
+											)}
 											{locations.map(({ location }) => (
 												<p key={location.title} className="body-sans">
 													{location.title}
@@ -203,7 +210,9 @@ export const EventsArchive = () => {
 										</div>
 									</Link>
 								</div>
-            )})}
+            );
+						return null;
+						})}
           </div>
           <div className="page-grid col-span-12">
             <div className="md:pt-4 mb-16 md:mb-0 col-span-10 col-start-2 md:col-start-3 md:col-span-4">

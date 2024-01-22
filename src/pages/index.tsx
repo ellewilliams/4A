@@ -355,6 +355,7 @@ const IndexPage = ({ data }) => {
                       key={block.id}
                       heading={block.eventsHeading}
                       events={allDatoCmsEvent}
+											featuredEvents={block.featuredEvents}
                     />
                   )
                 case CONTENT_BLOCKS.INFOBLOCK:
@@ -506,6 +507,31 @@ export const query = graphql`
         ... on DatoCmsEventsBlock {
           id
           eventsHeading
+					featuredEvents {
+						... on DatoCmsEvent {
+							id
+							endDate
+							eventDates {
+								eventDateTime
+							}
+							featureImageVideo {
+								alt
+								gatsbyImageData(width: 800, placeholder: NONE)
+							}
+							eventType {
+								eventType
+							}
+							locations {
+								id
+								location {
+									title
+								}
+							}
+							slug
+							title
+							dateTextOverride
+						}
+					}
           internal {
             type
           }

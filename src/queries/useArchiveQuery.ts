@@ -4,17 +4,18 @@ export function useArchiveQuery() {
   const data = useStaticQuery(graphql`
     query {
       datoCmsArchive(
-        meta: { isValid: { eq: true }, status: { eq: "published" } }
+        meta: { isValid: { eq: true }, status: { ne: "draft" } }
       ) {
         archiveDisclaimer
       }
       allDatoCmsExhibition(
-        filter: { meta: { isValid: { eq: true }, status: { eq: "published" } } }
+        filter: { meta: { isValid: { eq: true }, status: { ne: "draft" } } }
         sort: { fields: startDate, order: DESC }
       ) {
         nodes {
           id
           slug
+					dateTextOverride
           exhibitionStatus
           startDate
           endDate
@@ -35,7 +36,7 @@ export function useArchiveQuery() {
         }
       }
       allDatoCmsEvent(
-        filter: { meta: { isValid: { eq: true }, status: { eq: "published" } } }
+        filter: { meta: { isValid: { eq: true }, status: { ne: "draft" } } }
         sort: { fields: eventDates, order: DESC }
       ) {
         nodes {
@@ -50,6 +51,7 @@ export function useArchiveQuery() {
             eventType
           }
 					endDate
+					dateTextOverride
           locations {
             id
             location {

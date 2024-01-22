@@ -119,9 +119,15 @@ const Creative = ({ data }) => {
                     }}
                   />
                   <div className="details">
-                    <p className="body-sans">
-                      {exhibition.startDate} &#8211; {exhibition.endDate}
-                    </p>
+										{exhibition.dateTextOverride ? (
+											<p className="body-sans">{exhibition.dateTextOverride}</p>
+										) : (
+											exhibition.startDate && (
+												<p className="body-sans">
+													{exhibition.startDate} – {exhibition.endDate}
+												</p>
+											)
+										)}
                     {exhibition.locations.map(({ location }) => (
                       <p key={location} className="body-sans">
                         {location.title}
@@ -152,12 +158,16 @@ const Creative = ({ data }) => {
                     <p className="body-sans">
                       <b>{event.eventType?.eventType}</b>
                     </p>
-                    {event.eventDates.length &&
-                      event.eventDates.map(({ eventDateTime }) => (
-                        <p key={eventDateTime} className="body-sans">
-                          {eventDateTime}
-                        </p>
-                      ))}
+										{event.dateTextOverride ? (
+											<p className="body-sans">{event.dateTextOverride}</p>
+										) : (
+											event.eventDates.length > 0 &&
+											event.eventDates.map(({ eventDateTime }) => (
+												<p key={eventDateTime} className="body-sans">
+													{eventDateTime}
+												</p>
+											))
+										)}
                     {event.locations.map(({ location }) => (
                       <p key={location} className="body-sans">
                         {location.title}
@@ -277,7 +287,7 @@ export const query = graphql`
     allDatoCmsExhibitionArtists: allDatoCmsExhibition(
       sort: { fields: [meta___publishedAt], order: DESC }
       filter: {
-        meta: { isValid: { eq: true }, status: { eq: "published" } }
+        meta: { isValid: { eq: true }, status: { ne: "draft" } }
         artists: { elemMatch: { name: { eq: $name } } }
       }
     ) {
@@ -293,6 +303,7 @@ export const query = graphql`
         }
         startDate(formatString: "DD MMMM")
         endDate(formatString: "DD MMMM YYYY")
+				dateTextOverride
         featureImageVideo {
           alt
           gatsbyImageData(placeholder: NONE)
@@ -312,7 +323,7 @@ export const query = graphql`
     allDatoCmsExhibitionCurators: allDatoCmsExhibition(
       sort: { fields: [meta___publishedAt], order: DESC }
       filter: {
-        meta: { isValid: { eq: true }, status: { eq: "published" } }
+        meta: { isValid: { eq: true }, status: { ne: "draft" } }
         curators: { elemMatch: { name: { eq: $name } } }
       }
     ) {
@@ -320,6 +331,7 @@ export const query = graphql`
         id
         title
         slug
+				dateTextOverride
         artists {
           name
         }
@@ -347,7 +359,7 @@ export const query = graphql`
     allDatoCmsEvent(
       sort: { fields: [meta___publishedAt], order: DESC }
       filter: {
-        meta: { isValid: { eq: true }, status: { eq: "published" } }
+        meta: { isValid: { eq: true }, status: { ne: "draft" } }
         artists: { elemMatch: { name: { eq: $name } } }
       }
     ) {
@@ -366,6 +378,7 @@ export const query = graphql`
           eventDateTime(formatString: "DD MMMM YYYY")
           id
         }
+				dateTextOverride
         locations {
           id
           location {
@@ -384,7 +397,7 @@ export const query = graphql`
     }
     allDatoCmsDigitalProject(
       filter: {
-        meta: { isValid: { eq: true }, status: { eq: "published" } }
+        meta: { isValid: { eq: true }, status: { ne: "draft" } }
         artist: { elemMatch: { name: { eq: $name } } }
       }
       sort: { fields: publicationDate, order: DESC }
@@ -406,7 +419,7 @@ export const query = graphql`
 		allDatoCmsSpecialEvent(
       sort: { fields: [meta___publishedAt], order: DESC }
       filter: {
-        meta: { isValid: { eq: true }, status: { eq: "published" } }
+        meta: { isValid: { eq: true }, status: { ne: "draft" } }
         artists: { elemMatch: { name: { eq: $name } } }
       }
     ) {

@@ -30,6 +30,7 @@ export const ExhibitionsArchive = () => {
 				exhibitionStatus
 				startDate
 				endDate
+				dateTextOverride
 				featureImageVideo {
 					alt
 					gatsbyImageData(placeholder: NONE)
@@ -156,6 +157,7 @@ export const ExhibitionsArchive = () => {
 									formattedTitle,
 									locations,
 									featureImageVideo,
+									dateTextOverride,
 								} = item
 								const endDate = new Date(item.endDate)
               if (endDate < new Date(Date.now()))
@@ -176,7 +178,13 @@ export const ExhibitionsArchive = () => {
 								/>
 								<div className="details">
 									<p className="body-sans">
-									{dayjs(startDate).format("D MMMM")} &#8211; {dayjs(endDate).format("D MMMM YYYY")}
+										{dateTextOverride ? (
+											<>{dateTextOverride}</>
+										) : (
+											<>
+												{dayjs(startDate).format("D MMMM")} – {dayjs(endDate).format("D MMMM YYYY")}
+											</>
+										)}
 									</p>
 									{locations[0] && (
 										<p key={item.locations[0].location.title} className="body-sans">

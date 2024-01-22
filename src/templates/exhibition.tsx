@@ -292,6 +292,7 @@ const Exhibition = ({ data, pageContext }) => {
                     eventType,
                     featureImageVideo,
                     slug,
+										dateTextOverride,
                     eventDates,
                   }) => {
                     return (
@@ -318,14 +319,19 @@ const Exhibition = ({ data, pageContext }) => {
                           <p className="body-sans">
                             <b>{eventType?.eventType}</b>
                           </p>
-                          {eventDates.length &&
-                            eventDates.map(({ id, eventDateTime }) => (
-                              <p className="body-sans" key={id}>
+													{dateTextOverride ? (
+														<p className="body-sans">
+															{dateTextOverride}
+														</p>
+													) : eventDates.length ? (
+														eventDates.map(({ eventDateTime }, index: number) => (
+															<p className="body-sans" key={id}>
                                 {dayjs(eventDateTime).format(
                                   "dddd, D MMMM YYYY, h:mma"
                                 )}
                               </p>
-                            ))}
+														))
+													) : null}
                           <p className="body-sans">{locations.title}</p>
                           {excerpt !== "" && (
                             <div
@@ -432,9 +438,15 @@ const Exhibition = ({ data, pageContext }) => {
                   }}
                 />
                 <div className="details">
-                  <p className="body-sans">
-                    {exhibition.startDate} &#8211; {exhibition.endDate}
-                  </p>
+									{exhibition.dateTextOverride ? (
+										<p className="body-sans">
+											{exhibition.dateTextOverride}
+										</p>
+									) : exhibition.startDate ? (
+										<p className="body-sans">
+											{exhibition.startDate} &#8211; {exhibition.endDate}
+										</p>
+									) : null}
                   {exhibition.locations.map(({ location }) => (
                     <p key={location.title} className="body-sans">
                       {location.title}
@@ -544,6 +556,7 @@ export const query = graphql`
         eventType {
           eventType
         }
+				dateTextOverride
         eventDates {
           ... on DatoCmsDate {
             id
@@ -585,6 +598,7 @@ export const query = graphql`
             streamingUrl
           }
         }
+				dateTextOverride
         formattedTitle
         locations {
           id
@@ -608,6 +622,7 @@ export const query = graphql`
         slug
         startDate(formatString: "DD MMMM")
         endDate(formatString: "DD MMMM YYYY")
+				dateTextOverride
         featureImageVideo {
           alt
           gatsbyImageData(placeholder: NONE)
