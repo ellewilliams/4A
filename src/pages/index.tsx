@@ -43,16 +43,9 @@ const IndexPage = ({ data }) => {
       </HelmetDatoCms>
       <h1 className="visually-hidden">4A Center for Contemporary Asian Art</h1>
       <div className="home page-top">
-        <div className="container-fluid">
-          <div className="relative">
-            <div className="absolute md:-mt-2 right-0 logo-name">
-              <Icon className="logo" variant="name" fill="#FF8039" />
-            </div>
-          </div>
-        </div>
-        <section className="exhibitions container-fluid page-grid medium-gap">
+        <section className="exhibitions medium-gap">
           {topExhibition && (
-            <div className="exhibition medium-gap col-span-12">
+            <div className="top-exhibition medium-gap col-span-12">
               <div className="image-wrapper">
                 {topExhibition.featureImageVideo && (
                   <Link to={`/exhibitions/${topExhibition.slug}`}>
@@ -84,7 +77,7 @@ const IndexPage = ({ data }) => {
               {topExhibition.featureImageVideo && (
                 <Link
                   to={`/exhibitions/${topExhibition.slug}`}
-                  className="outer-text-wrapper"
+                  className="outer-text-wrapper container-fluid"
                 >
                   <div className="text-wrapper">
                     {topExhibition.exhibitionStatus == "UPCOMING" && (
@@ -98,7 +91,7 @@ const IndexPage = ({ data }) => {
                         __html: topExhibition.formattedTitle,
                       }}
                     />
-                    <div className="details">
+                    <div className="details ">
 											{topExhibition.dateTextOverride ? (
 												<p className="body-sans">
 													{topExhibition.dateTextOverride}
@@ -124,7 +117,7 @@ const IndexPage = ({ data }) => {
               {topExhibition.featureImage && (
                 <Link
                   to={`/${topExhibition.slug}`}
-                  className="outer-text-wrapper"
+                  className="outer-text-wrapper container-fluid"
                 >
                   <div className="text-wrapper">
                     <h2
@@ -145,6 +138,7 @@ const IndexPage = ({ data }) => {
               )}
             </div>
           )}
+					<div className="container-fluid page-grid">
           {leftExhibition && (
             <div className="exhibition medium-gap col-span-12">
               <div className="image-wrapper">
@@ -333,6 +327,7 @@ const IndexPage = ({ data }) => {
               )}
             </div>
           )}
+					</div>
         </section>
         <div className="page-grid section-gap">
           <div className="col-span-10 col-start-3 md:col-span-3 md:col-start-9">

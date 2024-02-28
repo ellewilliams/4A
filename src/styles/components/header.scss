@@ -4,4 +4,7 @@ header.header {
 	@media screen and (min-width: 768px) {
 		min-height: 100px;
 	}
+	.logo a {
+		@apply xl:transform xl:scale-110;
+	}
 }

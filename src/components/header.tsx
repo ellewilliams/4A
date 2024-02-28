@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react"
 import ThemeContext from "../context/ThemeContext"
 import { Link } from "gatsby"
 import { Icon } from "../components/icon"
+import AnimatedLogo from "../images/logo-animated.gif"
 import { Navigation } from "./navigation"
 import { useLocation } from "@reach/router"
 import { useHomeQuery } from "../queries/useHomeQuery"
@@ -67,17 +68,21 @@ export const Header = ({ featureColour }) => {
           </div>
         )}
         <Navigation />
-        <div className="logo col-span-6 col-start-7">
+        <div className="logo col-span-6 col-start-7 text-right">
           <Link
             to="../.."
             aria-label="Navigate Home"
-            className="w-12 md:w-20 z-20 block ml-auto"
+            className="h-10 md:h-14 xl:h-16 z-20 inline-block ml-auto"
           >
+						{home ?  (
+							<img src={AnimatedLogo} alt="4A Centre for Contemporary Asian Art" className="ml-auto h-full w-auto origin-bottom-right transform scale-105"/>
+						) : (
             <Icon
-              className="logo"
+              className="logo ml-auto"
               variant={headerLogo}
               fill={featureColour || "#FF8039"}
             />
+						)}
           </Link>
         </div>
         <Search />

@@ -1,4 +1,7 @@
 .home {
+	&.page-top {
+		@apply mt-6 md:mt-10;
+	}
   .logo-name {
     svg {
       width: 100%;
@@ -86,32 +89,42 @@
     }
   }
   .exhibitions {
+		.top-exhibition{
+			.outer-text-wrapper,
+			.image-wrapper {
+
+				@apply block;
+
+				.text-wrapper {
+					@apply col-span-12;
+
+					h2 {
+						@apply md:text-5.5xl xl:text-6xl 2xl:text-6.5xl 3xl:text-7xl;
+					}
+				}
+			}
+			.image-wrapper a {
+				@apply md:col-span-9 md:col-start-2;
+			}
+			.gatsby-image-wrapper {
+        height: 0;
+        padding-bottom: 60%;
+				@media (min-width: 1024px) {
+					padding-bottom: 50%;
+				}
+				@media (min-width: 1600px) {
+					padding-bottom: 40%;
+				}
+      }
+		}
     .exhibition {
       .gatsby-image-wrapper {
         height: 0;
         padding-bottom: 60%;
       }
 
-      &:first-of-type {
-        .outer-text-wrapper,
-        .image-wrapper {
-          @apply grid md:grid-cols-12 md:gap-x-10 lg:gap-x-14;
-
-          .text-wrapper {
-            @apply md:col-span-10 md:col-start-2;
-
-            h2 {
-              @apply md:text-5.5xl xl:text-6xl 2xl:text-6.5xl 3xl:text-7xl;
-            }
-          }
-        }
-        .image-wrapper a {
-          @apply md:col-span-9 md:col-start-2;
-        }
-      }
-
-      &:nth-of-type(2),
-      &:nth-of-type(3) {
+      &:nth-of-type(1),
+      &:nth-of-type(2) {
         @apply col-span-10;
 
         h2 {
@@ -119,14 +132,14 @@
         }
       }
 
-      &:nth-of-type(2) {
+      &:nth-of-type(1) {
         @apply col-start-3 md:col-span-6 md:mt-24 lg:mt-32;
         @media (min-width: 768px) {
           margin-bottom: 0px !important;
         }
       }
 
-      &:nth-of-type(3) {
+      &:nth-of-type(2) {
         @apply md:col-span-5 md:col-start-8;
         margin-bottom: 0px !important;
       }
