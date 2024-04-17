@@ -1,4 +1,4 @@
-nav.menu {
+nav.menu, .submenu {
   @apply bg-light-grey z-50 h-full overflow-y-scroll p-5 md:p-10;
   width: 74%;
   transform: translateX(-100%);
@@ -10,8 +10,8 @@ nav.menu {
     transition: transform 0.4s ease-in-out;
   }
 
-  &.whats-on {
-    & > ul {
+  &.submenu-open {
+    .main {
       transform: translateX(calc(-100% - 20px));
       position: relative;
 
@@ -25,7 +25,7 @@ nav.menu {
       opacity: 1 !important;
       pointer-events: all !important;
     }
-  }
+  }	
 
   &.about {
     & > ul {
@@ -91,23 +91,24 @@ nav.menu {
   .has-submenu {
     ul.submenu {
       position: absolute;
-      left: calc(100% + 20px);
       width: 100%;
       top: 0px;
-      opacity: 0;
+			padding-top:0px;
       pointer-events: none;
-
-      @media (min-width: 753px) {
-        left: calc(100% + 40px);
-      }
+			transform: translateX(100%);
 
       li:first-of-type {
         margin-top: 0px;
       }
+
+			&[aria-expanded=true] {
+				opacity: 1;
+				pointer-events:auto;
+			}
     }
   }
 
-  .button {
+  .Donate {
     border: 2px solid black;
     margin-top: 5px;
     padding: 4px 10px 6px;

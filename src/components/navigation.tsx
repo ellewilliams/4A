@@ -3,43 +3,22 @@ import useOnClickOutside from "use-onclickoutside"
 import { Link } from "gatsby"
 import { Icon } from "../components/icon"
 import { useLocation } from "@reach/router"
+import { useMenuQuery } from "../queries/useMenuQuery"
 
 export const Navigation = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false)
-  const [showWhatsOn, setShowWhatsOn] = useState<boolean>(false)
-  const [showWhatsOnText, setShowWhatsOnText] = useState<boolean>(false)
-  const [showAbout, setShowAbout] = useState<boolean>(false)
-  const [showAboutText, setShowAboutText] = useState<boolean>(false)
   const { pathname } = useLocation()
   const papers = pathname.includes("papers/issue")
   const safepassage = pathname.includes("safe-passage")
+  const { datoCmsMenu } = useMenuQuery()
+  const { menuItems } = datoCmsMenu
 
-  const handleDelayWhatsOn = (delay: number) => {
-    setTimeout(() => {
-      setShowWhatsOnText(!showWhatsOnText)
-    }, delay)
-
-    return () => {
-      clearTimeout(delay)
-    }
-  }
-
-  const handleDelayAbout = (delay: number) => {
-    setTimeout(() => {
-      setShowAboutText(!showAboutText)
-    }, delay)
-
-    return () => {
-      clearTimeout(delay)
-    }
-  }
+  const [showSubmenus, setShowSubmenus] = useState<{ [key: string]: boolean }>({})
+  const [showSubmenuTexts, setShowSubmenuTexts] = useState<{ [key: string]: boolean }>({})
 
   const handleDelayCloseMenu = (delay?: number) => {
     setTimeout(() => {
-      setShowAboutText(false)
-      setShowAbout(false)
-      setShowWhatsOn(false)
-      setShowWhatsOnText(false)
+      setShowMenu(false)
     }, delay)
 
     return () => {
@@ -51,8 +30,22 @@ export const Navigation = () => {
     setShowMenu(false)
   }
 
+  const toggleSubmenu = (linkName: string) => {
+    setShowSubmenus((prevState) => ({
+      ...prevState,
+      [linkName]: !prevState[linkName]
+    }))
+    setShowSubmenuTexts((prevState) => ({
+      ...prevState,
+      [linkName]: !prevState[linkName]
+    }))
+  }
+
   const navRef = useRef(null)
   useOnClickOutside(navRef, handleClickOutsideCloseMenu)
+
+  // Function to check if any submenu is open
+  const isAnySubmenuOpen = Object.values(showSubmenus).some((value) => value)
 
   return (
     <div>
@@ -90,11 +83,7 @@ export const Navigation = () => {
       <nav
         ref={navRef}
         style={{ transform: `translateX(${showMenu ? 0 : "-100%"})` }}
-        className={`${showWhatsOn ? "whats-on" : ""} ${
-          showWhatsOnText ? "whats-on-text" : ""
-        } ${showAbout ? "about" : ""} ${
-          showAboutText ? "about-text" : ""
-        } menu body-sans text-black fixed overflow-hidden`}
+        className={`menu body-sans text-black fixed overflow-hidden ${isAnySubmenuOpen ? 'submenu-open' : ''}`}
       >
         <button
           className="close-menu cursor-pointer"
@@ -118,92 +107,71 @@ export const Navigation = () => {
             <path d="M18.7461 1L0.746095 19" stroke="black" strokeWidth="2" />
           </svg>
         </button>
-        <ul>
-          <li>
-            <Link to="../..">Home</Link>
-          </li>
-          <li>
-            <div className="about has-submenu">
-              <button
-                className="font-medium"
-                aria-expanded={showAbout}
-                type="button"
-                onClick={(e) => {
-                  e.preventDefault()
-                  setShowAbout(!showAbout)
-                  setShowAboutText(!showAboutText)
-                }}
-              >
-                About
-                <svg
-                  width="11"
-                  height="17"
-                  viewBox="0 0 11 17"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M1 1L9 8.5L1 16" stroke="black" strokeWidth="2" />
-                </svg>
-              </button>
-              <ul className="about-submenu submenu">
-                <li>
-                  <Link to="/about">About 4A</Link>
-                </li>
-                <li>
-                  <Link to="/about#history">History</Link>
-                </li>
-                <li>
-                  <Link to="/people">People</Link>
-                </li>
-                <li>
+        <ul className="main">
+          {menuItems.map(({ link, linkName, externalLink, subMenu }, index: number) => (
+            <li key={index} className={linkName}>
+              {subMenu && subMenu.length > 0 ? (
+                <div className="has-submenu">
                   <button
-                    className="back cursor-pointer pt-2"
+                    className="font-medium"
+                    type="button"
                     onClick={(e) => {
                       e.preventDefault()
-                      setShowAbout(!showAbout)
-                      handleDelayAbout(400)
+                      toggleSubmenu(linkName)
                     }}
+                    aria-expanded={showSubmenus[linkName]}
                   >
-                    ← Back
+                    {linkName}
+                    <svg
+                      width="11"
+                      height="17"
+                      viewBox="0 0 11 17"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M1 1L9 8.5L1 16" stroke="black" strokeWidth="2" />
+                    </svg>
                   </button>
-                </li>
-              </ul>
-            </div>
-          </li>
-					<li>
-            <Link to="/whats-on" aria-label="See What's On">What's On</Link>
-          </li>
-					<li>
-            <Link to="/archive" aria-label="See our Exhibition and Event Archive">Explore our Archive</Link>
-          </li>
-          <li>
-            <Link to="/papers" aria-label="See 4A Papers">4A Papers</Link>
-          </li>
-          <li>
-            <Link to="/digital" aria-label="See 4A Digital">4A Digital</Link>
-          </li>
-          <li>
-            <Link to="/kids" aria-label="See 4A Kids">4A Kids</Link>
-          </li>
-          <li>
-            <Link to="/talks" aria-label="See 4A Talks">4A Talks</Link>
-          </li>
-          <li>
-            <Link to="/news" aria-label="See News">News</Link>
-          </li>
-					<li>
-            <Link to="/opportunities" aria-label="See Opportunities">Opportunities</Link>
-          </li>
-          <li>
-            <Link to="/visit-us" aria-label="See Visit Us">Visit Us</Link>
-          </li>
-          <li className="button">
-            <Link to="/donate" aria-label="See Donate">Donate</Link>
-          </li>
+									<ul
+										className={`${linkName}-submenu submenu`}
+										aria-expanded={showSubmenus[linkName]}
+									>
+                    {subMenu.map(({ link, linkName, externalLink }, index: number) => (
+                      <li key={index} className={linkName}>
+                        <a
+                          href={link ? link : undefined}
+                          aria-label={`Go to ${linkName}`}
+                          {...(externalLink ? { target: "_blank" } : {})}
+                        >
+                          {linkName}
+                        </a>
+                      </li>
+                    ))}
+										<li>
+												<button
+													className="back cursor-pointer pt-2"
+													onClick={(e) => {
+														e.preventDefault()
+														toggleSubmenu(linkName)
+													}}
+												>
+													← Back
+												</button>
+											</li>
+                  </ul>
+                </div>
+              ) : (
+                <a
+                  href={link ? link : undefined}
+                  aria-label={`Go to ${linkName}`}
+                  {...(externalLink ? { target: "_blank" } : {})}
+                >
+                  {linkName}
+                </a>
+              )}
+            </li>
+          ))}
         </ul>
-        <div className="w-full absolute left-0 bottom-0 logo">
-          <Icon className="logo" variant="spot" fill="#FFFFFF" />
-        </div>
       </nav>
     </div>
   )
