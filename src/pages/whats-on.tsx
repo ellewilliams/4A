@@ -7,21 +7,25 @@ import { Link, graphql } from "gatsby"
 import { filter } from "lodash"
 import { HelmetDatoCms } from "gatsby-source-datocms"
 import { GatsbyImage } from "gatsby-plugin-image"
+import { useWhatsOnPageQuery } from "../queries/useWhatsOnPageQuery"
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
 const WhatsOnPage = ({ data }) => {
+	const { datoCmsWhatsOn } = useWhatsOnPageQuery()
   const allDatoCmsEventSeries = data.allDatoCmsEventSeries.nodes
   const upcomingEvents = data.allDatoCmsEvent.nodes
   const upcomingSpecialEvents = data.allDatoCmsSpecialEvent.nodes
   const exhibitions = data.allDatoCmsExhibition.nodes
+	const { title } =
+	datoCmsWhatsOn
 
   return (
     <Layout theme="white">
-      <HelmetDatoCms title="What's On" />
+      <HelmetDatoCms title={title} />
       <div className="container-fluid whats-on page-top">
         <h2 className="heading-feature text-torch-red mb-8 md:mb-10 lg:mb-12">
-          What's On
+					{title}
         </h2>
         {(exhibitions.length || allDatoCmsEventSeries.length > 0) && (
           <section

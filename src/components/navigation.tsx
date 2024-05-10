@@ -48,7 +48,7 @@ export const Navigation = () => {
   const isAnySubmenuOpen = Object.values(showSubmenus).some((value) => value)
 
   return (
-    <div>
+    <div className="menu-container">
       <div className="menu-open fixed">
         <button
           className={`${

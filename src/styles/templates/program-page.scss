@@ -1,0 +1,20 @@
+.program-page {
+	.small-sans p {
+		@apply mb-3;
+	}
+	p a, h3 a, h4 a {
+		@apply underline;
+	}
+}
+.associated-exhibitions .gatsby-image-wrapper img {
+	max-height: 250px;
+		@media (min-width:768px) {
+				max-height: 350px;
+		}
+		@media (min-width:1200px) {
+				max-height: 450px;
+		}
+		@media (min-width:1400px) {
+				max-height: 500px;
+		}
+}

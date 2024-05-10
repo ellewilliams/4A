@@ -244,8 +244,46 @@ exports.createPages = async ({ graphql, actions }) => {
           slug: slug,
           textColour: textColour.hex,
           backgroundColour: backgroundColour.hex,
+					currentDate: getCurrentDate(),
         },
       })
     }
   )
+
+	const ProgramPage = await graphql(`
+	{
+		allDatoCmsProgramPage(
+			filter: { meta: { isValid: { eq: true }, status: { ne: "draft" } } }
+		) {
+			nodes {
+				slug
+				textColour {
+					hex
+				}
+				copyColour {
+					hex
+				}
+				backgroundColour {
+					hex
+				}
+			}
+		}
+	}
+`)
+ProgramPage.data.allDatoCmsProgramPage.nodes.forEach(
+	({ slug, textColour, copyColour, backgroundColour }) => {
+		createPage({
+			path: `${slug}`,
+			component: path.resolve("./src/templates/program-page.tsx"),
+			context: {
+				slug: slug,
+				copyColour: copyColour.hex,
+				textColour: textColour.hex,
+				backgroundColour: backgroundColour.hex,
+				currentDate: getCurrentDate(),
+				templateType: 'program-page',
+			},
+		})
+	}
+)
 }

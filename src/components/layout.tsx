@@ -31,7 +31,7 @@ export default function Layout(props: LayoutProps) {
           } ${safePassage ? "safe-passage" : ""} ${papers ? "papers-issue" : ""} ${article ? `${pathname.split('/').filter(x => x).join('-')}` : ""}`}
         style={{ backgroundColor: color }}
       >
-        <Header featureColour={featureColor} />
+        <Header featureColour={featureColor} type="4a" />
         <main>{children}</main>
       </div>
       <Footer />

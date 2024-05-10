@@ -379,6 +379,28 @@ module.exports = {
 								}
 							}
 						}
+					},
+					allDatoCmsProgramPage(
+						sort: {
+							fields: [meta___publishedAt],
+							order: DESC
+						},
+						filter: {meta: {isValid: {eq: true}, status: {ne: "draft"}}}
+					) {
+						edges {
+							node {
+								id
+								slug
+								formattedTitle
+								featureImage {
+									alt
+									gatsbyImageData(placeholder: NONE)
+								}
+								model {
+									name
+								}
+							}
+						}
 					}
 				}
 			`,
@@ -395,6 +417,7 @@ module.exports = {
             ...data.allDatoCmsExhibition.edges,
             ...data.allDatoCmsPaper.edges,
             ...data.allDatoCmsSpecialEvent.edges,
+						...data.allDatoCmsProgramPage.edges,
             ...data.allDatoCmsEventSeries.edges,
           ].map(({ node }) => ({
             id: node.id,

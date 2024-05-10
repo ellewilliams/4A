@@ -16,13 +16,18 @@ enum HEADER_PATHS {
   KIDS = "kids",
 }
 
+interface HeaderProps {
+  type: string; // Ensure type is required
+}
+
 function pathnameIncludes(pathname: string, path: string): boolean {
   return pathname.includes(path)
 }
 
-export const Header = ({ featureColour }) => {
+export const Header = ({ featureColour, type }) => {
   const { headerLogo, handleHeaderLogo } = useContext(ThemeContext)
   const { pathname } = useLocation()
+
 
   useEffect(() => {
     switch (true) {
@@ -41,6 +46,16 @@ export const Header = ({ featureColour }) => {
 
   const { datoCmsHome } = useHomeQuery()
 
+  const computeSlugPrefix = (type: string): string => {
+    const modelTypeName = type.replace("Single ", "").replace("Studio ", "");
+    const slugPrefix = modelTypeName.replace(/\s+/g, "-").toLowerCase();
+    return slugPrefix;
+  };
+
+  // Compute slugPrefix based on type
+  const slugPrefix = computeSlugPrefix(type);
+
+
   return (
     <>
       <LogoJsonLd
@@ -50,7 +65,7 @@ export const Header = ({ featureColour }) => {
       <header
         className={`header pt-5 md:pt-10 container-fluid page-grid overflow-x-hidden ${
           home ? "home" : ""
-        }`}
+        } ${slugPrefix}`}
       >
         {home && (
           <div className="col-span-12 container-fluid home page-grid md:absolute top-0 left-0 right-0 opening-times">
@@ -89,4 +104,23 @@ export const Header = ({ featureColour }) => {
       </header>
     </>
   )
+}
+
+
+// Helper function to determine current page template
+function getCurrentPageTemplate(pathname: string): string {
+  // Example logic to determine template based on pathname
+  if (pathname.includes("papers")) {
+    return "papers-template"
+  } else if (pathname.includes("articles")) {
+    return "articles-template"
+  } else if (pathname.includes("digital")) {
+    return "digital-template"
+  } else if (pathname.includes("kids")) {
+    return "kids-template"
+	  } else if (pathname.includes("kids")) {
+    return "kids-template"
+  } else {
+    return "default-template"
+  }
 }

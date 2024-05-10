@@ -3,7 +3,7 @@ import Layout from "../components/layout"
 import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
 import timezone from "dayjs/plugin/timezone"
-import { SwiperGallery } from "../components/headerGallery"
+import { HeaderSwiperGallery } from "../components/headerGallery"
 import { HelmetDatoCms } from "gatsby-source-datocms"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -66,7 +66,7 @@ const SpecialEvent = ({ data, pageContext }) => {
                 ease="none"
               >
                 <div className="header-gallery">
-                  <SwiperGallery slides={headerImageGallery} />
+                  <HeaderSwiperGallery slides={headerImageGallery} />
                 </div>
               </Tween>
             </Timeline>

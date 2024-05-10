@@ -82,12 +82,13 @@ export const Search = () => {
     if (slugPrefix === "digital-project") return `/digital/${slug}`
 		if (slugPrefix === "special-event") return `/events/${slug}`
 		if (slugPrefix === "event-series") return `/${slug}`
+		if (slugPrefix === "program-page") return `/${slug}`
 
     // Pluralize slug prefix and return path
     return `/${slugPrefix}s/${slug}`
   }
 
-  const removeSingle = (text: string) => text.replace("Single ", "")
+  const removeSingle = (text: string) => text.replace("Single ", "").replace(" Page", "")
 
   return (
     <div className="page-grid block">
@@ -109,7 +110,7 @@ export const Search = () => {
           >
             <path
               d="M15.9872 14.0638C17.0596 12.6 17.7021 10.8 17.7021 8.85106C17.7021 3.97021 13.7319 0 8.85106 0C3.97021 0 0 3.97021 0 8.85106C0 13.7319 3.97021 17.7021 8.85106 17.7021C10.8 17.7021 12.6 17.0596 14.0638 15.9872L20.0766 22L22 20.0766C22 20.0723 15.9872 14.0638 15.9872 14.0638ZM8.85106 14.9787C5.47234 14.9787 2.7234 12.2298 2.7234 8.85106C2.7234 5.47234 5.47234 2.7234 8.85106 2.7234C12.2298 2.7234 14.9787 5.47234 14.9787 8.85106C14.9787 12.2298 12.2298 14.9787 8.85106 14.9787Z"
-              fill="#9C9C9C"
+              fill="#959494"
             />
           </svg>
         </button>

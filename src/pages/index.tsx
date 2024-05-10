@@ -9,6 +9,11 @@ import { Announcement } from "../components/home/announcement"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Acknowledgement } from "../components/acknowledgement"
 import { Icon } from "../components/icon"
+import dayjs from "dayjs"
+import utc from "dayjs/plugin/utc"
+import timezone from "dayjs/plugin/timezone"
+dayjs.extend(utc)
+dayjs.extend(timezone)
 
 enum CONTENT_BLOCKS {
   EVENTS = "DatoCmsEventsBlock",
@@ -29,7 +34,15 @@ const IndexPage = ({ data }) => {
     topExhibition,
     leftExhibition,
     rightExhibition,
+		overrideTop,
+		overrideLeft,
+		overrideRight,
   } = data.datoCmsHome
+	const startDate1 = new Date(topExhibition.startDate)
+	const startDate2 = new Date(leftExhibition.startDate)
+	const startDate3 = new Date(rightExhibition.startDate)
+	var now = dayjs()
+	var today = now.format("YYYY-MM-DD")
 
   return (
     <Layout theme="">
@@ -44,6 +57,42 @@ const IndexPage = ({ data }) => {
       <h1 className="visually-hidden">4A Center for Contemporary Asian Art</h1>
       <div className="home page-top">
         <section className="exhibitions medium-gap">
+					{(overrideTop && overrideTop.length > 0) ? (
+						<>
+							{overrideTop.map(({title, image, link, smallText}, index: number) => {
+							return (
+								<div className="top-exhibition medium-gap col-span-12" key={index}>
+									<div className="image-wrapper">
+										{image && (
+											<Link to={link}>
+												<GatsbyImage
+													image={image.gatsbyImageData}
+													alt={image.alt || title}
+													className="mb-5 md:mb-7"
+													loading="eager"
+												/>
+											</Link>
+										)}
+									</div>
+									<Link
+                  to={link}
+                  className="outer-text-wrapper container-fluid"
+                	>
+										<div className="text-wrapper">
+											<h2
+												className="font-display antialiased text-4xl text-torch-red mb-3 sm:mb-4 md:mb-5"
+												dangerouslySetInnerHTML={{ __html: title }}
+											/>
+											<div className="details">
+												<p className="body-sans">{smallText}</p>
+											</div>
+										</div>
+									</Link>
+								</div>
+							)})}
+						</>
+					):(
+					<>
           {topExhibition && (
             <div className="top-exhibition medium-gap col-span-12">
               <div className="image-wrapper">
@@ -80,11 +129,9 @@ const IndexPage = ({ data }) => {
                   className="outer-text-wrapper container-fluid"
                 >
                   <div className="text-wrapper">
-                    {topExhibition.exhibitionStatus == "UPCOMING" && (
-                      <h3 className="heading-4 text-silver-chalice exhibition-status mb-2">
-                        {topExhibition.exhibitionStatus} exhibition
-                      </h3>
-                    )}
+										<h3 className="heading-4 text-silver-chalice exhibition-status mb-2">
+											{startDate1 && startDate1 >= now.toDate() ? 'Upcoming exhibition' : ''}
+										</h3>
                     <h2
                       className="font-display antialiased text-4xl text-torch-red mb-3 sm:mb-4 md:mb-5"
                       dangerouslySetInnerHTML={{
@@ -96,7 +143,7 @@ const IndexPage = ({ data }) => {
 												<p className="body-sans">
 													{topExhibition.dateTextOverride}
 												</p>
-											) : topExhibition.exhibitionStatus == "CURRENT" ? (
+											) : startDate1 && startDate1 <= now.toDate() ? (
                         <p className="body-sans">
                           Open until {topExhibition.endDate}
                         </p>
@@ -137,102 +184,176 @@ const IndexPage = ({ data }) => {
                 </Link>
               )}
             </div>
+						)}
+						</>
           )}
 					<div className="container-fluid page-grid">
-          {leftExhibition && (
-            <div className="exhibition medium-gap col-span-12">
-              <div className="image-wrapper">
-                {leftExhibition.featureImageVideo && (
-                  <Link to={`/exhibitions/${leftExhibition.slug}`}>
-                    <GatsbyImage
-                      image={leftExhibition.featureImageVideo.gatsbyImageData}
-                      alt={
-                        leftExhibition.featureImageVideo.alt ||
-                        leftExhibition.formattedTitle
-                      }
-                      className="mb-5 md:mb-7"
-                      loading="eager"
-                    />
-                  </Link>
-                )}
-                {leftExhibition.featureImage && (
-                  <Link to={`/${leftExhibition.slug}`}>
-                    <GatsbyImage
-                      image={leftExhibition.featureImage.gatsbyImageData}
-                      alt={
-                        leftExhibition.featureImage.alt ||
-                        leftExhibition.formattedTitle
-                      }
-                      className="mb-5 md:mb-7"
-                      loading="eager"
-                    />
-                  </Link>
-                )}
-              </div>
-              {leftExhibition.featureImageVideo && (
-                <Link
-                  to={`/exhibitions/${leftExhibition.slug}`}
-                  className="outer-text-wrapper"
-                >
-                  <div className="text-wrapper">
-                    {leftExhibition.exhibitionStatus == "UPCOMING" && (
-                      <h3 className="heading-4 text-silver-chalice exhibition-status mb-2">
-                        {leftExhibition.exhibitionStatus} exhibition
-                      </h3>
-                    )}
-                    <h2
-                      className="font-display antialiased text-4xl text-torch-red mb-3 sm:mb-4 md:mb-5"
-                      dangerouslySetInnerHTML={{
-                        __html: leftExhibition.formattedTitle,
-                      }}
-                    />
-                    <div className="details">
-											{leftExhibition.dateTextOverride ? (
+					{(overrideLeft && overrideLeft.length > 0) ? (
+						<>
+							{overrideLeft.map(({title, image, link, smallText}, index: number) => {
+							return (
+								<div className="exhibition medium-gap col-span-12" key={index}>
+									<div className="image-wrapper">
+										{image && (
+											<Link to={link}>
+												<GatsbyImage
+													image={image.gatsbyImageData}
+													alt={image.alt || title}
+													loading="eager"
+												/>
+											</Link>
+										)}
+									</div>
+									<Link
+                  to={link}
+                  className="outer-text-wrapper container-fluid"
+                	>
+										<div className="text-wrapper">
+											<h2
+												className="font-display antialiased text-4xl text-torch-red mb-3 sm:mb-4 md:mb-5"
+												dangerouslySetInnerHTML={{ __html: title }}
+											/>
+											<div className="details">
+												<p className="body-sans">{smallText}</p>
+											</div>
+										</div>
+									</Link>
+								</div>
+							)})}
+						</>
+					):(
+						<>
+						{leftExhibition && (
+							<div className="exhibition medium-gap col-span-12">
+								<div className="image-wrapper">
+									{leftExhibition.featureImageVideo && (
+										<Link to={`/exhibitions/${leftExhibition.slug}`}>
+											<GatsbyImage
+												image={leftExhibition.featureImageVideo.gatsbyImageData}
+												alt={
+													leftExhibition.featureImageVideo.alt ||
+													leftExhibition.formattedTitle
+												}
+												className="mb-5 md:mb-7"
+												loading="eager"
+											/>
+										</Link>
+									)}
+									{leftExhibition.featureImage && (
+										<Link to={`/${leftExhibition.slug}`}>
+											<GatsbyImage
+												image={leftExhibition.featureImage.gatsbyImageData}
+												alt={
+													leftExhibition.featureImage.alt ||
+													leftExhibition.formattedTitle
+												}
+												className="mb-5 md:mb-7"
+												loading="eager"
+											/>
+										</Link>
+									)}
+								</div>
+								{leftExhibition.featureImageVideo && (
+									<Link
+										to={`/exhibitions/${leftExhibition.slug}`}
+										className="outer-text-wrapper"
+									>
+										<div className="text-wrapper">
+											{leftExhibition.exhibitionStatus == "UPCOMING" && (
+												<h3 className="heading-4 text-silver-chalice exhibition-status mb-2">
+													{startDate2 && startDate2 >= now.toDate() ? 'Upcoming exhibition' : ''}
+												</h3>
+											)}
+											<h2
+												className="font-display antialiased text-4xl text-torch-red mb-3 sm:mb-4 md:mb-5"
+												dangerouslySetInnerHTML={{
+													__html: leftExhibition.formattedTitle,
+												}}
+											/>
+											<div className="details">
+												{leftExhibition.dateTextOverride ? (
+													<p className="body-sans">
+														{leftExhibition.dateTextOverride}
+													</p>
+												) : startDate2 && startDate2 <= now.toDate() ? (
+													<p className="body-sans">
+														Open until {leftExhibition.endDate}
+													</p>
+												) : (
+													<p className="body-sans">
+														Opening {leftExhibition.startDate}
+													</p>
+												)}
+												{leftExhibition.locations.map(({ location }) => (
+													<p key={location.title} className="body-sans">
+														{location.title}
+													</p>
+												))}
+											</div>
+										</div>
+									</Link>
+								)}
+								{leftExhibition.featureImage && (
+									<Link
+										to={`/${leftExhibition.slug}`}
+										className="outer-text-wrapper"
+									>
+										<div className="text-wrapper">
+											<h2
+												className="font-display antialiased text-4xl text-torch-red mb-3 sm:mb-4 md:mb-5"
+												dangerouslySetInnerHTML={{
+													__html: leftExhibition.formattedTitle,
+												}}
+											/>
+											<div className="details">
 												<p className="body-sans">
-													{leftExhibition.dateTextOverride}
+													Ongoing until {leftExhibition.endDate}
+													<br />
+													Various locations
 												</p>
-											) : leftExhibition.exhibitionStatus == "CURRENT" ? (
-                        <p className="body-sans">
-                          Open until {leftExhibition.endDate}
-                        </p>
-                      ) : (
-                        <p className="body-sans">
-                          Opening {leftExhibition.startDate}
-                        </p>
-                      )}
-                      {leftExhibition.locations.map(({ location }) => (
-                        <p key={location.title} className="body-sans">
-                          {location.title}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                </Link>
-              )}
-              {leftExhibition.featureImage && (
-                <Link
-                  to={`/${leftExhibition.slug}`}
-                  className="outer-text-wrapper"
-                >
-                  <div className="text-wrapper">
-                    <h2
-                      className="font-display antialiased text-4xl text-torch-red mb-3 sm:mb-4 md:mb-5"
-                      dangerouslySetInnerHTML={{
-                        __html: leftExhibition.formattedTitle,
-                      }}
-                    />
-                    <div className="details">
-                      <p className="body-sans">
-                        Ongoing until {leftExhibition.endDate}
-                        <br />
-                        Various locations
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              )}
-            </div>
-          )}
+											</div>
+										</div>
+									</Link>
+								)}
+							</div>
+						)}
+						</>
+					)}
+					{(overrideRight && overrideRight.length > 0) ? (
+						<>
+							{overrideRight.map(({title, image, link, smallText}, index: number) => {
+							return (
+								<div className="exhibition medium-gap col-span-12" key={index}>
+									<div className="image-wrapper">
+										{image && (
+											<Link to={link}>
+												<GatsbyImage
+													image={image.gatsbyImageData}
+													alt={image.alt || title}
+													loading="eager"
+												/>
+											</Link>
+										)}
+									</div>
+									<Link
+                  to={link}
+                  className="outer-text-wrapper container-fluid"
+                	>
+										<div className="text-wrapper">
+											<h2
+												className="font-display antialiased text-4xl text-torch-red mb-3 sm:mb-4 md:mb-5"
+												dangerouslySetInnerHTML={{ __html: title }}
+											/>
+											<div className="details">
+												<p className="body-sans">{smallText}</p>
+											</div>
+										</div>
+									</Link>
+								</div>
+							)})}
+						</>
+					):(
+					<>
           {rightExhibition && (
             <div className="exhibition medium-gap col-span-12">
               <div className="image-wrapper">
@@ -271,7 +392,7 @@ const IndexPage = ({ data }) => {
                   <div className="text-wrapper">
                     {rightExhibition.exhibitionStatus == "UPCOMING" && (
                       <h3 className="heading-4 text-silver-chalice exhibition-status mb-2">
-                        {rightExhibition.exhibitionStatus} exhibition
+                        {startDate3 && startDate3 >= now.toDate() ? 'Upcoming exhibition' : ''}
                       </h3>
                     )}
                     <h2
@@ -285,7 +406,7 @@ const IndexPage = ({ data }) => {
 												<p className="body-sans">
 													{rightExhibition.dateTextOverride}
 												</p>
-											) : rightExhibition.exhibitionStatus == "CURRENT" ? (
+											) : startDate3 && startDate3 <= now.toDate() ? (
                         <p className="body-sans">
                           Open until {rightExhibition.endDate}
                         </p>
@@ -327,6 +448,8 @@ const IndexPage = ({ data }) => {
               )}
             </div>
           )}
+					</>
+					)}
 					</div>
         </section>
         <div className="page-grid section-gap">
@@ -400,7 +523,7 @@ export const query = graphql`
 					dateTextOverride
           featureImageVideo {
             alt
-            gatsbyImageData(width: 1500, placeholder: NONE)
+            gatsbyImageData(width: 2000, placeholder: NONE)
             video {
               streamingUrl
             }
@@ -428,6 +551,60 @@ export const query = graphql`
           formattedTitle
         }
       }
+			overrideTop {
+				... on DatoCmsCustomFeatureBlock {
+					title
+					model {
+						name
+					}
+					id
+					smallText
+					image {
+						alt
+							gatsbyImageData(width: 2000, placeholder: NONE)
+					}
+					link
+					internal {
+            type
+          }
+				}
+			}
+			overrideRight {
+				... on DatoCmsCustomFeatureBlock {
+					title
+					model {
+						name
+					}
+					id
+					smallText
+					image {
+						alt
+							gatsbyImageData(width: 1000, placeholder: NONE)
+					}
+					link
+					internal {
+            type
+          }
+				}
+			}
+			overrideLeft {
+				... on DatoCmsCustomFeatureBlock {
+					title
+					model {
+						name
+					}
+					id
+					smallText
+					image {
+						alt
+							gatsbyImageData(width: 1000, placeholder: NONE)
+					}
+					link
+					internal {
+            type
+          }
+				}
+			}
       leftExhibition {
         ... on DatoCmsExhibition {
           id

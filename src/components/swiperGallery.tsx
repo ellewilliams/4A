@@ -10,7 +10,7 @@ SwiperCore.use([Navigation])
 export const SwiperGallery = ({ slides }) => {
   const [swiperIndex, setSwiperIndex] = useState<number>(0)
   const [swiperCaption, setSwiperCaption] = useState<string>("")
-  const swiperRef = useRef<Swiper>(null)
+  const swiperRef = useRef<typeof Swiper>(null)
 
   useEffect(() => {
     setSwiperCaption(slides[swiperIndex]?.title || "")

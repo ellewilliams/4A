@@ -220,7 +220,7 @@ const Event = ({ data, pageContext }) => {
               </div>
             )}
             {associatedExhibition.length > 0 && (
-              <div className="exhibition body-san md:mb-12 lg:mb-16 xl:mb-20">
+              <div className="associated-exhibitions body-san md:mb-12 lg:mb-16 xl:mb-20">
                 <h4 className="heading-4 mb-5 md:mb-6 text-silver-chalice">
                   Associated Exhibition
                 </h4>
