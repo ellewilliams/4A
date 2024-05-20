@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useState } from "react"
 import ReactPlayer from "react-player"
 import Layout from "../components/layout"
 import { uniqBy, take } from "lodash"
@@ -36,6 +36,7 @@ const Exhibition = ({ data, pageContext }) => {
     headerImage,
     exhibitionVideo,
     seoMetaTags,
+		bonusContent,
   } = data.datoCmsExhibition
   const { featureColour } = pageContext
 
@@ -72,6 +73,18 @@ const Exhibition = ({ data, pageContext }) => {
       },
     },
   }
+
+	const [expanded, setExpanded] = useState(Array(bonusContent.length).fill(false));
+
+  // Function to toggle the expanded state for a specific item
+  const toggleExpanded = (index) => {
+    setExpanded((prevExpanded) => {
+      const newExpanded = [...prevExpanded];
+      newExpanded[index] = !newExpanded[index];
+      return newExpanded;
+    });
+  };
+
 
   return (
     <Layout theme="white" featureColor={featureColour}>
@@ -241,6 +254,41 @@ const Exhibition = ({ data, pageContext }) => {
                 </div>
               </div>
             )}
+					</div>
+					{bonusContent.length > 0 && (
+						<div className="order-3 col-span-12 lg:col-span-10 lg:col-start-2 medium-gap-top">
+              <div className="bonus-content body-sans">
+                <h4 className="heading-4 mb-5 text-silver-chalice mt-12 lg:mt-16 xl:mt-20">
+                  Bonus content
+                </h4> 
+                <div className="content-wrapper">
+                  {bonusContent.map(({ title, text }, index: number) => (
+                    <div className="essay md:grid md:grid-cols-10 grid-gap medium-gap" key={index}>
+											<h4 className="title heading-3-regular mb-4 md:mb-5 md:col-span-4"
+											style={{ color: featureColour }}
+											dangerouslySetInnerHTML={{
+												__html: title,
+											}}
+										/>
+                      <div className="md:col-span-5 md:col-start-6">
+												<div
+													dangerouslySetInnerHTML={{
+														__html: expanded[index] ? text : `${text.substring(0, 180)}...`,
+													}}
+												/>
+												<button
+													className="underline mt-5" 
+													onClick={() => toggleExpanded(index)}>
+													{expanded[index] ? 'Show Less –' : 'Show More +'}
+												</button>
+                      </div>
+										</div>
+                  ))}
+                </div>
+              </div>
+						</div>
+					)}
+					<div className="order-4 col-span-12 md:col-span-9 lg:col-start-2 lg:col-span-7 xl:col-span-6 xl:col-start-2">
 						{eventRecording && (
               <div className="event-recording body-sans">
                 <h4 className="heading-4 mb-4 text-silver-chalice mt-12 lg:mt-16 xl:mt-20">
@@ -278,7 +326,7 @@ const Exhibition = ({ data, pageContext }) => {
       <div className="container-fluid exhibition mt-12 lg:mt-16 xl:mt-20">
         <div className="page-grid">
           {events.length > 0 && (
-            <div className="events body-sans order-3 col-span-12 lg:col-start-2 lg:col-span-10">
+            <div className="events body-sans order-5 col-span-12 lg:col-start-2 lg:col-span-10">
               <h4 className="heading-4 mb-5 md:mb-6 text-silver-chalice">
                 Events
               </h4>
@@ -546,6 +594,14 @@ export const query = graphql`
           name
         }
       }
+			bonusContent {
+				title
+				text
+				model {
+					name
+				}
+				id
+			}
       credit
       creditLogos {
         alt

@@ -523,7 +523,7 @@ export const query = graphql`
 					dateTextOverride
           featureImageVideo {
             alt
-            gatsbyImageData(width: 2000, placeholder: NONE)
+            gatsbyImageData(width: 2000, height: 500, placeholder: NONE)
             video {
               streamingUrl
             }

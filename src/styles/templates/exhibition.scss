@@ -15,6 +15,13 @@
     .event:nth-of-type(n + 3) {
       @apply md:mt-12 lg:mt-16;
     }
+		.event .excerpt h3, .event .excerpt strong {
+			@apply antialiased;
+			font-family: inherit;
+			font-weight: 400;
+			font-size: inherit;
+			line-height: inherit;
+		}
   }
 	.locations .location:last-of-type {
 		@apply mb-0;
