@@ -105,7 +105,7 @@ const ProgramPage = ({ data, pageContext }) => {
 					{associatedExhibition.length > 0 && (
 						<div className="associated-exhibitions body-sans col-span-12 md:col-span-10 md:col-start-2 md:mb-12 lg:mb-16 xl:mb-20">
 							<h4 className="heading-4 mb-5 md:mb-6 text-silver-chalice">
-								Associated Exhibition
+								Associated Exhibition{associatedExhibition.length > 1 && ('s')}
 							</h4>
 							<div className="grid grid-cols-12 md:grid-cols-10 gap-x-5 md:gap-x-10 lg:gap-x-14">
 								{associatedExhibition.map(
@@ -315,7 +315,7 @@ const ProgramPage = ({ data, pageContext }) => {
                   <GatsbyImage
                     image={image.gatsbyImageData}
                     alt={image.alt || "Credit Logo"}
-                    className="h-16 col-span-1 mix-blend-multiply"
+                    className="h-16 col-span-1 mix-blend-multiply gatsby-image-wrapper"
                   />
                 </div>
               ))}
