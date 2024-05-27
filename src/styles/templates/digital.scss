@@ -5,7 +5,7 @@
   .artist-name span:nth-of-type(n + 2)::before {
     content: ", ";
   }
-	.artist-name span:last-of-type::before {
+	.artist-name span:last-of-type:not(:first-of-type)::before {
     content: " and ";
   }
 }
