@@ -43,7 +43,7 @@ export const Acknowledgement = (props: AcknowledgementProps) => {
 
   const acknowledgementStyle = {
     opacity,
-    transition: "opacity 0.5s ease-in-out",
+    transition: "opacity 0.5s ease-in-out", 
   };
 
   if (text && showAcknowledgement) {
@@ -53,7 +53,7 @@ export const Acknowledgement = (props: AcknowledgementProps) => {
         onClick={handleAcknowledgementClick} 
 				style={acknowledgementStyle}
       >
-        <div className="px-5 absolute top-1/2 transform -translate-y-1/2 text-center col-span-12 md:col-span-10 md:col-start-2 xl:col-span-8 xl:col-start-3 3xl:col-span-6 3xl:col-start-4">
+        <div className="px-5 aoc-text transform -translate-y-1/2 text-center col-span-12 md:col-span-10 md:col-start-2 xl:col-span-8 xl:col-start-3 3xl:col-span-6 3xl:col-start-4">
           <p
             className="body-sans-large antialiased text-block"
             dangerouslySetInnerHTML={{
