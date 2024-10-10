@@ -36,7 +36,7 @@ export const MailchimpInput = () => {
           style={{ border: "2px solid #C6C6C6" }}
           placeholder="Email address"
           name="email"
-          type="email"
+          type="text"
           aria-label="email"
           onChange={(e) => {
             handleEmailChange(e)
