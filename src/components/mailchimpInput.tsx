@@ -34,7 +34,7 @@ export const MailchimpInput = () => {
         <input
           className="mr-3 flex-grow h-10 pl-3 pr-3 border-gray-300 border-2 text-sm bg-transparent antialiased"
           style={{ border: "2px solid #C6C6C6" }}
-          placeholder="Email address "
+          placeholder="Email address"
           name="email"
           type="text"
           aria-label="email"
