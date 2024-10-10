@@ -13,9 +13,10 @@ export const MailchimpInput = () => {
       .then((data: any) => {
         setMessage(data.msg)
       })
-      .catch(() => {
-        setMessage("sorry something has gone wrong, please try again")
-      })
+      .catch((error) => {
+				console.error(error);
+				setMessage("Something has gone wrong, please try again");
+			});
   }
 
   const handleEmailChange = (event) => {
@@ -24,17 +25,18 @@ export const MailchimpInput = () => {
 
   return (
     <form
+			className="mb-10"
       onSubmit={(e) => {
         handleSubmit(e)
       }}
     >
-      <div className="flex mb-12">
+      <div className="flex mb-2">
         <input
           className="mr-3 flex-grow h-10 pl-3 pr-3 border-gray-300 border-2 text-sm bg-transparent antialiased"
           style={{ border: "2px solid #C6C6C6" }}
           placeholder="Email address"
           name="email"
-          type="text"
+          type="email"
           aria-label="email"
           onChange={(e) => {
             handleEmailChange(e)
