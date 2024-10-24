@@ -118,7 +118,7 @@ const DonatePage = () => {
           <div className="container-fluid page-grid">
             <section
               aria-labelledby="Donate Online"
-              className="col-span-12 md:col-span-10 md:col-start-2 lg:col-span-7 lg:col-start-2 xl:col-span-6 xl:col-start-2 medium-gap mt-12 md:mt-14 lg:mt-20"
+              className="col-span-12 md:col-span-10 md:col-start-2 lg:col-span-7 lg:col-start-2 medium-gap mt-12 md:mt-14 lg:mt-20"
             >
               <h3 className="heading-3 text-torch-red small-gap">
                 Donate Online
@@ -131,7 +131,7 @@ const DonatePage = () => {
                   }}
                 />
               )}
-              <div className="relative mb-6 md:mb-8 bg-donate-options grid grid-cols-3 text-white text-center heading-4 lg:w-3/4">
+              {/* <div className="relative mb-6 md:mb-8 bg-donate-options grid grid-cols-3 text-white text-center heading-4 lg:w-3/4">
                 <a
                   href="https://buy.stripe.com/14keYc0tt7fLf5u4gg"
                   target="_blank"
@@ -195,7 +195,7 @@ const DonatePage = () => {
                 >
                   $2,500
                 </a>
-              </div>
+              </div> */}
             </section>
           </div>
         </div>
