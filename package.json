@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.4.1",
-    "@stripe/stripe-js": "^1.20.3",
     "add": "^2.0.6",
     "autoprefixer": "^10.3.1",
     "dayjs": "^1.10.7",
@@ -41,7 +40,6 @@
     "gatsby-plugin-sitemap": "^3.3.0",
     "gatsby-source-datocms": "^2.6.16",
     "gatsby-source-filesystem": "^3.0.0",
-    "gatsby-source-stripe": "^3.2.2",
     "gatsby-transformer-sharp": "^3.0.0",
     "gsap": "^3.8.0",
     "postcss": "^8.3.6",

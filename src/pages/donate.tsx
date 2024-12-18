@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import Layout from "../components/layout"
-import getStripe from "../utils/stripejs"
 import { HelmetDatoCms } from "gatsby-source-datocms"
 import { useDonateQuery } from "../queries/useDonateQuery"
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -113,7 +112,6 @@ const DonatePage = () => {
             </Link>
           </div>
         </div>
-        {/* {allStripePrice.nodes.length > 0 && ( */}
         <div id="online-donations" className="donate-section bg-light-grey">
           <div className="container-fluid page-grid">
             <section
@@ -131,75 +129,9 @@ const DonatePage = () => {
                   }}
                 />
               )}
-              {/* <div className="relative mb-6 md:mb-8 bg-donate-options grid grid-cols-3 text-white text-center heading-4 lg:w-3/4">
-                <a
-                  href="https://buy.stripe.com/14keYc0tt7fLf5u4gg"
-                  target="_blank"
-                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
-                >
-                  $25
-                </a>
-                <a
-                  href="https://buy.stripe.com/6oEaHWgsreId8H66os"
-                  target="_blank"
-                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
-                >
-                  $88
-                </a>
-								<a
-                  href="https://buy.stripe.com/7sI8zOa436bHe1qdQY"
-                  target="_blank"
-                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
-                >
-                  $100
-                </a>
-                <a
-                  href="https://buy.stripe.com/6oEaHWccb7fLe1q145"
-                  target="_blank"
-                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
-                >
-                  $250
-                </a>
-								<a
-                  href="https://buy.stripe.com/eVa3fub870Rn5uU8wF"
-                  target="_blank"
-                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
-                >
-                  $500
-                </a>
-								<a
-                  href="https://buy.stripe.com/28o03iekj7fLf5uaEJ"
-                  target="_blank"
-                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
-                >
-                  $888
-                </a>
-								<a
-                  href="https://buy.stripe.com/eVadU85NN6bH1eE7sD"
-                  target="_blank"
-                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
-                >
-                  $1,500
-                </a>
-								<a
-                  href="https://buy.stripe.com/28o7vK3FF0Rn9La9AK"
-                  target="_blank"
-                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
-                >
-                  $2,000
-                </a>
-                <a
-                  href="https://buy.stripe.com/28oeYcdgfeIde1q6oq"
-                  target="_blank"
-                  className="price-option relative border p-3 md:p-4 cursor-pointer md:pl-4 md:pr-6 focus:outline-none amount-option transition duration-300 hover:bg-torch-red"
-                >
-                  $2,500
-                </a>
-              </div> */}
             </section>
           </div>
         </div>
-        {/* )} */}
         <div className="container-fluid page-grid">
           <section
             aria-labelledby="Donation Options"

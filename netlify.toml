@@ -16,7 +16,6 @@
   GOOGLE_ANALYTICS_ID="UA-51516537-2"
   FACEBOOK_PIXEL_ID="FACEBOOK_PIXEL_ID"
   GATSBY_STRIPE_PUBLISHABLE_KEY="pk_live_NpGzJna2PD1PtUEF2i1ewB7o"
-  STRIPE_SECCRET_KEY="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"
 [[plugins]]
   package = "@netlify/plugin-gatsby"
 [[redirects]]
